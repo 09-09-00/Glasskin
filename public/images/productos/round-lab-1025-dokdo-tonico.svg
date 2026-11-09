@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="720" viewBox="0 0 640 720" role="img" aria-labelledby="title desc">
+  <title id="title">1025 Dokdo Tónico de Round Lab</title>
+  <desc id="desc">Ilustración editorial del envase de 1025 Dokdo Tónico</desc>
+  <rect width="640" height="720" fill="#FFFFFF"/>
+  <g transform="translate(320 400) scale(1.45) translate(-320 -400)"><ellipse cx="320" cy="505" rx="132" ry="20" fill="#26352D" opacity=".12"/>
+    <rect x="253" y="120" width="134" height="74" rx="12" fill="#4F826C"/>
+    <rect x="240" y="181" width="160" height="320" rx="28" fill="#FFFEFA" stroke="#FFFFFF" stroke-width="5"/>
+    <rect x="257" y="211" width="126" height="254" rx="15" fill="#E5EEF1"/>
+    
+    <text x="320" y="253" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#24352C" opacity=".76">ROUND LAB</text>
+    <line x1="281.3333333333333" y1="266" x2="358.6666666666667" y2="266" stroke="#24352C" opacity=".22"/>
+    <text x="320" y="292" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="#24352C">1025 Dokdo</text>
+<text x="320" y="313" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="#24352C">Tónico</text>
+    <text x="320" y="369" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" letter-spacing="1.5" fill="#24352C" opacity=".62">GLASSKIN SELECTION</text></g>
+</svg>

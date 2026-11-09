@@ -1,0 +1,270 @@
+// ============================================================
+//  Esquema de base de datos - Tienda de skincare "Glasskin"
+//  Prisma ORM 7 + PostgreSQL persistente.
+//  Los campos tipoPiel y preocupaciones se mantienen como JSON
+//  serializado para conservar compatibilidad con el catálogo actual.
+// ============================================================
+
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+// ---------- Marcas ----------
+model Brand {
+  id          Int       @id @default(autoincrement())
+  slug        String    @unique // ej. "la-roche-posay"
+  nombre      String // ej. "La Roche-Posay"
+  pais        String // país de origen, ej. "Francia"
+  descripcion String?
+  products    Product[]
+  videos      Video[]
+  createdAt   DateTime  @default(now())
+}
+
+// ---------- Categorías ----------
+model Category {
+  id          Int       @id @default(autoincrement())
+  slug        String    @unique // ej. "limpiadores"
+  nombre      String // ej. "Limpiadores"
+  icono       String? // emoji representativo, ej. "🧼"
+  descripcion String?
+  orden       Int       @default(0) // orden de aparición en la tienda
+  products    Product[]
+  createdAt   DateTime  @default(now())
+}
+
+// ---------- Productos ----------
+model Product {
+  id             Int                 @id @default(autoincrement())
+  slug           String              @unique
+  sku            String?
+  nombre         String
+  descripcion    String
+  modoUso        String // instrucciones de uso
+  precio         Float // precio de ejemplo (editable por el admin)
+  stock          Int                 @default(0)
+  imagen         String? // ruta de la imagen placeholder, ej. "/images/productos/x.svg"
+  tipoPiel       String              @default("[]") // JSON: ["seca","grasa","mixta","sensible","normal"]
+  preocupaciones String              @default("[]") // JSON: ["acne","manchas","arrugas","poros","rojez","deshidratacion"]
+  destacado      Boolean             @default(false) // aparece en la página de inicio
+  activo         Boolean             @default(true) // visible en el catálogo
+  brandId        Int
+  brand          Brand               @relation(fields: [brandId], references: [id])
+  categoryId     Int
+  category       Category            @relation(fields: [categoryId], references: [id])
+  ingredientes   ProductIngredient[]
+  videos         Video[]
+  imagenes       ProductImage[]
+  orderItems     OrderItem[]
+  subscriptions  Subscription[]
+  reviews        ProductReview[]
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+}
+
+// ---------- Imágenes de productos ----------
+model ProductImage {
+  id          Int      @id @default(autoincrement())
+  url         String // ruta en /public/productos/... o URL externa
+  alt         String? // texto alternativo
+  orden       Int      @default(0) // orden en la galería
+  principal   Boolean  @default(false) // imagen principal
+  blurDataUrl String?
+  width       Int?
+  height      Int?
+  mimeType    String?
+  size        Int?
+  sourceName  String?
+  sourceUrl   String?
+  license     String?
+  productId   Int
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+}
+
+// ---------- Ingredientes (relación N:M con productos) ----------
+model Ingredient {
+  id          Int                 @id @default(autoincrement())
+  slug        String              @unique
+  nombre      String // ej. "Niacinamida"
+  descripcion String? // qué hace este ingrediente
+  products    ProductIngredient[]
+}
+
+model ProductIngredient {
+  productId    Int
+  ingredientId Int
+  orden        Int        @default(0) // orden de los ingredientes clave
+  producto     Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  ingrediente  Ingredient @relation(fields: [ingredientId], references: [id])
+
+  @@id([productId, ingredientId])
+}
+
+// ---------- Videos (se usa en FASE 3) ----------
+model Video {
+  id          Int      @id @default(autoincrement())
+  titulo      String
+  url         String // URL de YouTube para embed
+  descripcion String?
+  tema        String? // tema del video, ej. "rutina", "reseña", "tutorial"
+  productId   Int?
+  producto    Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  brandId     Int?
+  brand       Brand?   @relation(fields: [brandId], references: [id], onDelete: SetNull)
+  createdAt   DateTime @default(now())
+}
+
+// ---------- Clientes ----------
+model Customer {
+  id            Int             @id @default(autoincrement())
+  nombre        String
+  email         String          @unique
+  telefono      String?
+  createdAt     DateTime        @default(now())
+  orders        Order[]
+  subscriptions Subscription[]
+  reviews       ProductReview[]
+}
+
+// ---------- Cuentas privadas de clientes ----------
+// Se separan del registro Customer para permitir conservar pedidos de invitado
+// sin que una cuenta nueva pueda reclamarlos solo con conocer el correo.
+model CustomerAccount {
+  id                              Int       @id @default(autoincrement())
+  nombre                          String
+  email                           String    @unique
+  telefono                        String?
+  passwordHash                    String
+  tipoPiel                        String?
+  preocupacionesPiel              String    @default("[]")
+  rutinaGuardada                  String?
+  rutinaGuardadaAt                DateTime?
+  consentimientoPersonalizacion   Boolean   @default(false)
+  consentimientoPersonalizacionAt DateTime?
+  orders                          Order[]
+  createdAt                       DateTime  @default(now())
+  updatedAt                       DateTime  @updatedAt
+}
+
+// ---------- Pedidos ----------
+model Order {
+  id                   Int                 @id @default(autoincrement())
+  numero               String              @unique // número legible, ej. "PED-000001"
+  customerId           Int
+  customer             Customer            @relation(fields: [customerId], references: [id])
+  accountId            Int?
+  account              CustomerAccount?    @relation(fields: [accountId], references: [id], onDelete: SetNull)
+  estado               String              @default("pendiente") // pendiente | confirmado | enviado | entregado | cancelado
+  total                Float
+  costoEnvio           Float               @default(0)
+  tipoEntrega          String              @default("delivery") // delivery | retiro
+  latitudEntrega       Float?
+  longitudEntrega      Float?
+  direccionEnvio       String?
+  notas                String?
+  entregaEstimadaAt    DateTime?
+  recibidoPorClienteAt DateTime?
+  reciboTokenHash      String?
+  items                OrderItem[]
+  reviews              ProductReview[]
+  automationMessages   AutomationMessage[]
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+
+  @@index([accountId, createdAt])
+}
+
+// ---------- Bandeja de automatizaciones ----------
+// Glasskin prepara estos mensajes automáticamente. Un conector de correo
+// puede enviarlos después, manteniendo historial y evitando respuestas duplicadas.
+model AutomationMessage {
+  id           Int      @id @default(autoincrement())
+  tipo         String // confirmacion_pedido | cambio_estado | soporte
+  destinatario String
+  asunto       String
+  cuerpo       String
+  estado       String   @default("borrador") // borrador | aprobado | enviado | error
+  orderId      Int?
+  order        Order?   @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([estado, createdAt])
+  @@index([destinatario])
+}
+
+// ---------- Consultas escaladas voluntariamente a una persona ----------
+model SupportCase {
+  id                Int      @id @default(autoincrement())
+  nombre            String
+  email             String
+  telefono          String?
+  categoria         String // pedido | recomendacion | reclamo | otra
+  consulta          String
+  respuestaSugerida String?
+  estado            String   @default("abierta") // abierta | resuelta
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([estado, createdAt])
+  @@index([email])
+}
+
+model OrderItem {
+  id             Int     @id @default(autoincrement())
+  orderId        Int
+  order          Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId      Int
+  producto       Product @relation(fields: [productId], references: [id])
+  cantidad       Int
+  precioUnitario Float // precio congelado al momento de la compra
+  subtotal       Float
+}
+
+// Opiniones vinculadas a una compra recibida, incluidas compras como invitado.
+model ProductReview {
+  id         Int      @id @default(autoincrement())
+  productId  Int
+  producto   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  customerId Int
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  orderId    Int
+  order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  rating     Int
+  comment    String
+  estado     String   @default("visible") // visible | oculta
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([orderId, productId])
+  @@index([productId, estado, createdAt])
+  @@index([customerId, createdAt])
+}
+
+// ---------- Suscripciones (se usa en FASE 4) ----------
+model Subscription {
+  id             Int      @id @default(autoincrement())
+  customerId     Int
+  customer       Customer @relation(fields: [customerId], references: [id])
+  productId      Int
+  product        Product  @relation(fields: [productId], references: [id])
+  frecuenciaDias Int // 30, 60 o 90 días
+  estado         String   @default("activa") // activa | pausada | cancelada
+  proximaEntrega DateTime
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// ---------- Configuración (tasa de cambio, etc.) ----------
+model Setting {
+  id        Int      @id @default(autoincrement())
+  clave     String   @unique
+  valor     String
+  updatedAt DateTime @updatedAt
+}

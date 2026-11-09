@@ -1,0 +1,309 @@
+[
+  {
+    "slug": "cosrx-ultimate-nourishing-rice-overnight-mask",
+    "nombre": "Ultimate Nourishing Rice Overnight Spa Mask",
+    "marca": "cosrx",
+    "categoria": "mascarillas",
+    "descripcion": "Mascarilla de noche con extracto de arroz que ilumina y nutre mientras duermes. Al despertar la piel está suave, luminosa y con el tono más uniforme.",
+    "ingredientes": [
+      "Extracto de arroz",
+      "Niacinamida"
+    ],
+    "tipoPiel": [
+      "seca",
+      "normal",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "manchas",
+      "deshidratacion"
+    ],
+    "modoUso": "Aplicar una capa fina como último paso de la rutina nocturna. Aclarar por la mañana. Uso 2-3 veces por semana.",
+    "precio": 18.99,
+    "stock": 36,
+    "destacado": false
+  },
+  {
+    "slug": "beauty-of-joseon-red-bean-pore-mask",
+    "nombre": "Red Bean Refreshing Pore Mask",
+    "marca": "beauty-of-joseon",
+    "categoria": "mascarillas",
+    "descripcion": "Mascarilla de arcilla con judía roja y caolín que absorbe el sebo y limpia los poros sin resecar. Su textura cremosa deja la piel suave, limpia y sin brillos.",
+    "ingredientes": [
+      "Judía roja",
+      "Caolín",
+      "Glicerina"
+    ],
+    "tipoPiel": [
+      "grasa",
+      "mixta",
+      "normal"
+    ],
+    "preocupaciones": [
+      "poros",
+      "acne"
+    ],
+    "modoUso": "Aplicar una capa sobre la piel limpia y seca, dejar actuar 5-10 minutos y aclarar con agua tibia. Uso 1-2 veces por semana.",
+    "precio": 15.99,
+    "stock": 42,
+    "destacado": false
+  },
+  {
+    "slug": "round-lab-1025-dokdo-mascarilla-water-gel",
+    "nombre": "1025 Dokdo Mascarilla Water Gel",
+    "marca": "round-lab",
+    "categoria": "mascarillas",
+    "descripcion": "Mascarilla de hidrogel con agua marina de Dokdo que calma e hidrata intensamente en 15 minutos. Ideal para pieles sensibles o deshidratadas que necesitan un impulso inmediato de hidratación.",
+    "ingredientes": [
+      "Agua marina de Dokdo",
+      "Pantenol",
+      "Ácido hialurónico"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "grasa",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "rojez"
+    ],
+    "modoUso": "Aplicar sobre piel limpia durante 15-20 minutos, retirar y dar palmaditas para absorber el exceso.",
+    "precio": 3.99,
+    "stock": 80,
+    "destacado": false
+  },
+  {
+    "slug": "skin1004-centella-watergel-sheet-mask",
+    "nombre": "Madagascar Centella Watergel Sheet Mask",
+    "marca": "skin1004",
+    "categoria": "mascarillas",
+    "descripcion": "Mascarilla de hidrogel con centella asiática que calma la piel irritada y roja. Hidratación intensiva en 15-20 minutos, ideal después de la exposición al sol o de tratamientos exfoliantes.",
+    "ingredientes": [
+      "Centella asiática",
+      "Ácido hialurónico"
+    ],
+    "tipoPiel": [
+      "sensible",
+      "seca",
+      "grasa",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "rojez",
+      "deshidratacion",
+      "acne"
+    ],
+    "modoUso": "Aplicar sobre piel limpia durante 15-20 minutos, retirar y dar palmaditas. Sin aclarado.",
+    "precio": 4.99,
+    "stock": 75,
+    "destacado": false
+  },
+  {
+    "slug": "la-roche-posay-effaclar-micro-peeling-gel",
+    "nombre": "Effaclar Micro-Peeling Gel Purificante",
+    "marca": "la-roche-posay",
+    "categoria": "exfoliantes",
+    "descripcion": "Gel exfoliante purificante con ácido salicílico que desincrusta los poros y suaviza la textura de la piel. Reduce las imperfecciones y los puntos negros dejando la piel limpia y refinada.",
+    "ingredientes": [
+      "Ácido salicílico (BHA)",
+      "Zinc PCA",
+      "Glicerina"
+    ],
+    "tipoPiel": [
+      "grasa",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "acne",
+      "poros"
+    ],
+    "modoUso": "Usar 2-3 veces por semana en lugar del limpiador habitual: masajear y aclarar. Evitar el contorno de los ojos.",
+    "precio": 15.99,
+    "stock": 36,
+    "destacado": false
+  },
+  {
+    "slug": "neutrogena-rapid-clear-2-en-1-tonico-acne",
+    "nombre": "Rapid Clear 2 en 1 Tónico Anti-Imperfecciones",
+    "marca": "neutrogena",
+    "categoria": "exfoliantes",
+    "descripcion": "Tónico 2 en 1 con ácido salicílico que combate las imperfecciones y ayuda a difuminar sus marcas. Limpia los poros, controla el sebo y unifica el tono de la piel.",
+    "ingredientes": [
+      "Ácido salicílico (BHA)",
+      "Glicerina"
+    ],
+    "tipoPiel": [
+      "grasa",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "acne",
+      "manchas",
+      "poros"
+    ],
+    "modoUso": "Aplicar con un disco de algodón sobre piel limpia 1-2 veces al día. Usar protector solar por la mañana.",
+    "precio": 9.99,
+    "stock": 42,
+    "destacado": false
+  },
+  {
+    "slug": "medicube-zero-pore-pads",
+    "nombre": "Zero Pore Pads 2.0",
+    "marca": "medicube",
+    "categoria": "exfoliantes",
+    "descripcion": "Discos exfoliantes preimpregnados con AHA, BHA y niacinamida que afinan los poros y la textura de la piel. Doble textura (relieve y lisa) para exfoliar y luego calmar: el clásico viral de Medicube.",
+    "ingredientes": [
+      "AHA",
+      "Ácido salicílico (BHA)",
+      "Niacinamida"
+    ],
+    "tipoPiel": [
+      "grasa",
+      "mixta",
+      "normal"
+    ],
+    "preocupaciones": [
+      "poros",
+      "acne",
+      "manchas"
+    ],
+    "modoUso": "Deslizar un disco sobre la piel limpia con la textura de relieve y repetir con el lado liso. Uso 2-3 veces por semana por la noche. Usar protector solar por la mañana.",
+    "precio": 28.99,
+    "stock": 34,
+    "destacado": false
+  },
+  {
+    "slug": "cosrx-bha-blackhead-power-liquid",
+    "nombre": "BHA Blackhead Power Liquid",
+    "marca": "cosrx",
+    "categoria": "exfoliantes",
+    "descripcion": "Exfoliante con 4% de betaine salicilato (BHA natural) que disuelve puntos negros y sebo dentro de los poros. Textura ligera que deja la piel limpia, suave y con los poros menos visibles, sin irritación.",
+    "ingredientes": [
+      "Ácido salicílico (BHA)",
+      "Corteza de sauce"
+    ],
+    "tipoPiel": [
+      "grasa",
+      "mixta",
+      "normal"
+    ],
+    "preocupaciones": [
+      "poros",
+      "acne",
+      "manchas"
+    ],
+    "modoUso": "Aplicar una capa fina sobre piel limpia y seca, 2-3 veces por semana por la noche. No aclarar. Usar protector solar por la mañana.",
+    "precio": 22.99,
+    "stock": 40,
+    "destacado": false
+  },
+  {
+    "slug": "neutrogena-rapid-wrinkle-repair-eye-cream",
+    "nombre": "Rapid Wrinkle Repair Crema de Ojos con Retinol",
+    "marca": "neutrogena",
+    "categoria": "contornos-ojos",
+    "descripcion": "Crema de ojos con retinol y ácido hialurónico que difumina las arrugas y ojeras visibles. En pocas semanas reduce las líneas finas e ilumina el contorno de los ojos.",
+    "ingredientes": [
+      "Retinol",
+      "Ácido hialurónico",
+      "Glicerina"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "arrugas",
+      "manchas",
+      "deshidratacion"
+    ],
+    "modoUso": "Aplicar una pequeña cantidad mañana y noche alrededor del contorno de los ojos, dando palmaditas suaves. Usar protector solar por la mañana.",
+    "precio": 22.99,
+    "stock": 32,
+    "destacado": false
+  },
+  {
+    "slug": "loreal-revitalift-eye-cream-antiarrugas",
+    "nombre": "Revitalift Crema de Ojos Antiarrugas y Firmeza",
+    "marca": "loreal-paris",
+    "categoria": "contornos-ojos",
+    "descripcion": "Crema de ojos con proxilane y cafeína que reduce las arrugas y mejora la firmeza del contorno. Hidrata la zona, difuminando las ojeras y líneas finas con uso constante.",
+    "ingredientes": [
+      "Proxilane",
+      "Cafeína",
+      "Ácido hialurónico"
+    ],
+    "tipoPiel": [
+      "seca",
+      "normal",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "arrugas",
+      "deshidratacion"
+    ],
+    "modoUso": "Aplicar mañana y noche con suaves palmaditas desde el interior hacia el exterior del ojo.",
+    "precio": 14.99,
+    "stock": 40,
+    "destacado": false
+  },
+  {
+    "slug": "cosrx-advanced-snail-peptide-eye-cream",
+    "nombre": "Advanced Snail Peptide Eye Cream",
+    "marca": "cosrx",
+    "categoria": "contornos-ojos",
+    "descripcion": "Crema de ojos con mucina de caracol y 5 péptidos que hidrata, reafirma e ilumina el contorno. Difumina las ojeras y las líneas finas, dejando la zona jugosa y luminosa.",
+    "ingredientes": [
+      "Mucina de caracol",
+      "Péptidos",
+      "Niacinamida"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "mixta",
+      "sensible",
+      "grasa"
+    ],
+    "preocupaciones": [
+      "arrugas",
+      "deshidratacion",
+      "manchas"
+    ],
+    "modoUso": "Aplicar mañana y noche con palmaditas suaves alrededor del contorno de los ojos.",
+    "precio": 16.99,
+    "stock": 42,
+    "destacado": false
+  },
+  {
+    "slug": "beauty-of-joseon-revive-eye-serum-ginseng-retinal",
+    "nombre": "Revive Eye Serum: Ginseng + Retinal",
+    "marca": "beauty-of-joseon",
+    "categoria": "contornos-ojos",
+    "descripcion": "Sérum de ojos con ginseng y retinal que mejora la elasticidad y difumina las líneas finas. Textura ligera y nutritiva que hidrata el contorno, reduce ojeras y aporta luminosidad.",
+    "ingredientes": [
+      "Ginseng",
+      "Retinal",
+      "Aceite de jojoba"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "arrugas",
+      "manchas",
+      "deshidratacion"
+    ],
+    "modoUso": "Aplicar una pequeña cantidad mañana y noche con palmaditas suaves alrededor de los ojos. Usar protector solar por la mañana.",
+    "precio": 17.99,
+    "stock": 46,
+    "destacado": false
+  }
+]

@@ -1,0 +1,12 @@
+[
+  { "slug": "limpiadores", "nombre": "Limpiadores", "icono": "🧼", "descripcion": "Gel, espuma, aceite y leche para el primer paso de tu rutina.", "orden": 1 },
+  { "slug": "tonicos-esencias", "nombre": "Tónicos y Esencias", "icono": "💧", "descripcion": "Hidratación y preparación de la piel para los siguientes pasos.", "orden": 2 },
+  { "slug": "serums", "nombre": "Sérums", "icono": "🧪", "descripcion": "Concentrados de activos para cada preocupación de la piel.", "orden": 3 },
+  { "slug": "hidratantes", "nombre": "Hidratantes", "icono": "🧴", "descripcion": "Cremas y geles que sellan la hidratación de la piel.", "orden": 4 },
+  { "slug": "protectores-solares", "nombre": "Protectores Solares", "icono": "☀️", "descripcion": "El paso más importante: protege de manchas y fotoenvejecimiento.", "orden": 5 },
+  { "slug": "mascarillas", "nombre": "Mascarillas", "icono": "🎭", "descripcion": "Tratamientos intensivos de noche o de emergencia.", "orden": 6 },
+  { "slug": "exfoliantes", "nombre": "Exfoliantes", "icono": "✨", "descripcion": "AHA, BHA y peeling suave para renovar la textura.", "orden": 7 },
+  { "slug": "contornos-ojos", "nombre": "Contornos de Ojos", "icono": "👁️", "descripcion": "Cuidado específico para ojeras, líneas finas y bolsas.", "orden": 8 },
+  { "slug": "tratamientos-acne", "nombre": "Tratamientos de Acné", "icono": "🎯", "descripcion": "Tratamientos puntuales y diarios para piel con imperfecciones.", "orden": 9 },
+  { "slug": "tratamientos-antiedad", "nombre": "Tratamientos Antiedad", "icono": "⏳", "descripcion": "Retinol, péptidos y PDRN para firmar y difuminar arrugas.", "orden": 10 }
+]

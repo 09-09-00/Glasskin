@@ -1,0 +1,15 @@
+[
+  { "slug": "la-roche-posay", "nombre": "La Roche-Posay", "pais": "Francia", "descripcion": "Dermatología francesa recomendada en todo el mundo; fórmulas minimalistas con agua termal." },
+  { "slug": "neutrogena", "nombre": "Neutrogena", "pais": "Estados Unidos", "descripcion": "Clásicos de cuidado facial accesibles y avalados por dermatólogos desde hace décadas." },
+  { "slug": "loreal-paris", "nombre": "L'Oréal Paris", "pais": "Francia", "descripcion": "Innovación antiedad de la mayor casa de belleza del mundo." },
+  { "slug": "medicube", "nombre": "Medicube", "pais": "Corea del Sur", "descripcion": "Skincare clínico coreano de alta potencia para poros, manchas y antiedad." },
+  { "slug": "cosrx", "nombre": "COSRX", "pais": "Corea del Sur", "descripcion": "Esenciales coreanos minimalistas con mucina de caracol, propóleo y ácidos." },
+  { "slug": "beauty-of-joseon", "nombre": "Beauty of Joseon", "pais": "Corea del Sur", "descripcion": "Hanbang moderno: sabiduría tradicional coreana con ingredientes actuales." },
+  { "slug": "anua", "nombre": "Anua", "pais": "Corea del Sur", "descripcion": "Fórmulas minimalistas con hoja de corazón (heartleaf) para pieles sensibles." },
+  { "slug": "round-lab", "nombre": "Round Lab", "pais": "Corea del Sur", "descripcion": "Ingredientes naturales coreanos: agua Dokdo, abedul y soja." },
+  { "slug": "skin1004", "nombre": "Skin1004", "pais": "Corea del Sur", "descripcion": "Centella asiática pura de Madagascar para pieles sensibles." },
+  { "slug": "innisfree", "nombre": "Innisfree", "pais": "Corea del Sur", "descripcion": "Naturaleza de la isla de Jeju: té verde, arcilla volcánica y más." },
+  { "slug": "laneige", "nombre": "Laneige", "pais": "Corea del Sur", "descripcion": "Ciencia de la hidratación coreana; pioneros del efecto glass skin." },
+  { "slug": "isntree", "nombre": "Isntree", "pais": "Corea del Sur", "descripcion": "Fórmulas seguras y honestas con ácido hialurónico multimolecular." },
+  { "slug": "torriden", "nombre": "Torriden", "pais": "Corea del Sur", "descripcion": "Hidratación profunda con ácido hialurónico de bajo peso molecular." }
+]

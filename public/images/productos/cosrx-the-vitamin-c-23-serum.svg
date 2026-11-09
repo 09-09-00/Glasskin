@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="720" viewBox="0 0 640 720" role="img" aria-labelledby="title desc">
+  <title id="title">The Vitamin C 23 Serum de Cosrx</title>
+  <desc id="desc">Ilustración editorial del envase de The Vitamin C 23 Serum</desc>
+  <rect width="640" height="720" fill="#FFFFFF"/>
+  <g transform="translate(320 400) scale(1.3) translate(-320 -400)"><ellipse cx="320" cy="505" rx="132" ry="20" fill="#26352D" opacity=".12"/>
+    <rect x="270" y="111" width="100" height="84" rx="22" fill="#8A638B"/>
+    <rect x="286" y="178" width="68" height="45" rx="10" fill="#D9D4C9"/>
+    <path d="M231 246c0-19 15-34 34-34h110c19 0 34 15 34 34v219c0 25-20 45-45 45h-88c-25 0-45-20-45-45V246Z" fill="#FFFEFA" stroke="#FFFFFF" stroke-width="5"/>
+    <rect x="248" y="267" width="144" height="210" rx="18" fill="#F4EEE1"/>
+    
+    <text x="320" y="303" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#24352C" opacity=".76">COSRX</text>
+    <line x1="275.3333333333333" y1="316" x2="364.6666666666667" y2="316" stroke="#24352C" opacity=".22"/>
+    <text x="320" y="342" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="#24352C">The Vitamin C 23</text>
+<text x="320" y="363" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="#24352C">Serum</text>
+    <text x="320" y="419" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" letter-spacing="1.5" fill="#24352C" opacity=".62">GLASSKIN SELECTION</text></g>
+</svg>

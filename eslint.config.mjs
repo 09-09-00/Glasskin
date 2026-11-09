@@ -15,9 +15,15 @@ const eslintConfig = [
     ignores: [
       "node_modules/**",
       ".next/**",
+      ".glasskin-next/**",
+      ".glasskin-*/**",
       "out/**",
       "build/**",
       "next-env.d.ts",
+      "_demo-anterior/**",
+      ".agents/**",
+      ".claude/**",
+      ".windsurf/**",
     ],
   },
 ];

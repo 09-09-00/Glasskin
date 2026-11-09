@@ -1,26 +1,109 @@
+/* ============================================================
+   Estilos globales - Tienda de belleza con Tailwind v4
+   ============================================================ */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Segoe UI", Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --glass-ink: #203128;
+  --glass-sage: #577565;
+  --glass-accent: #3f806e;
+  --glass-sage-soft: #a9c8b5;
+  --glass-mist: #e7f0eb;
+  --glass-cream: #fbf8f1;
+  --glass-sand: #eee7d8;
+  --glass-sea-glass: #e8f0e8;
+  --glass-sun: #f2e4ba;
+  --glass-line: rgba(32, 49, 40, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: radial-gradient(ellipse at 8% 0%, rgba(223, 236, 228, 0.48), transparent 34rem), #fbf8f1;
+  color: var(--glass-ink);
+  font-family: var(--font-sans);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(87, 117, 101, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(87, 117, 101, 0.025) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+::selection {
+  background: #e8f0e8;
+  color: #203128;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.glass-panel {
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 24px 80px rgba(32, 49, 40, 0.1);
+  backdrop-filter: blur(18px);
+}
+
+.eyebrow {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.soft-shadow {
+  box-shadow: 0 18px 55px rgba(32, 49, 40, 0.09);
+}
+
+.image-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(112deg, transparent 35%, rgba(255,255,255,.32) 48%, transparent 61%);
+  transform: translateX(-120%);
+  transition: transform .7s ease;
+}
+
+.group:hover .image-shine::after {
+  transform: translateX(120%);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@keyframes glass-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.glass-float {
+  animation: glass-float 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .glass-float { animation: none; }
 }

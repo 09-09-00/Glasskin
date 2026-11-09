@@ -1,0 +1,462 @@
+[
+  {
+    "slug": "la-roche-posay-effaclar-gel-limpiador-purificante",
+    "nombre": "Effaclar Gel Limpiador Purificante",
+    "marca": "la-roche-posay",
+    "categoria": "limpiadores",
+    "descripcion": "Gel limpiador purificante que elimina el exceso de grasa, la suciedad y el maquillaje sin resecar la piel. Formulado con zinc PCA, ayuda a reducir las imperfecciones y a prevenir nuevos brotes manteniendo el equilibrio natural de la piel.",
+    "ingredientes": [
+      "Zinc PCA",
+      "Glicerina",
+      "Agua termal de La Roche-Posay"
+    ],
+    "tipoPiel": [
+      "grasa",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "acne",
+      "poros"
+    ],
+    "modoUso": "Aplicar mañana y noche sobre la piel húmeda, masajear suavemente y aclarar con agua. Evitar el contorno de los ojos.",
+    "precio": 14.99,
+    "stock": 45,
+    "destacado": false
+  },
+  {
+    "slug": "la-roche-posay-toleriane-espuma-limpiadora-purificante",
+    "nombre": "Toleriane Espuma Limpiadora Purificante",
+    "marca": "la-roche-posay",
+    "categoria": "limpiadores",
+    "descripcion": "Espuma cremosa que limpia la piel sensible con exceso de grasa sin alterar su barrera. Con niacinamida y ceramidas, elimina impurezas y maquillaje dejando la piel fresca, confortable y sin sensación de tirantez.",
+    "ingredientes": [
+      "Niacinamida",
+      "Ceramidas",
+      "Agua termal de La Roche-Posay"
+    ],
+    "tipoPiel": [
+      "sensible",
+      "grasa",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "rojez",
+      "poros",
+      "acne"
+    ],
+    "modoUso": "Espumar en las manos con agua tibia, aplicar sobre el rostro con movimientos circulares y aclarar. Uso diario, mañana y noche.",
+    "precio": 16.99,
+    "stock": 40,
+    "destacado": false
+  },
+  {
+    "slug": "neutrogena-hydro-boost-limpiador-agua-gel",
+    "nombre": "Hydro Boost Limpiador Agua-Gel",
+    "marca": "neutrogena",
+    "categoria": "limpiadores",
+    "descripcion": "Gel limpiador ligero que elimina impurezas y maquillaje mientras aporta hidratación con ácido hialurónico. Deja la piel suave, fresca y flexible sin sensación grasa ni tirantez.",
+    "ingredientes": [
+      "Ácido hialurónico",
+      "Extracto de oliva"
+    ],
+    "tipoPiel": [
+      "seca",
+      "normal",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "deshidratacion"
+    ],
+    "modoUso": "Masajear sobre la piel húmeda y aclarar con abundante agua. Uso diario, mañana y noche.",
+    "precio": 9.99,
+    "stock": 60,
+    "destacado": false
+  },
+  {
+    "slug": "cosrx-low-ph-good-morning-gel-limpiador",
+    "nombre": "Low pH Good Morning Gel Limpiador",
+    "marca": "cosrx",
+    "categoria": "limpiadores",
+    "descripcion": "Gel limpiador de pH suave (5.0-5.5) que respeta el manto ácido de la piel. Con té verde y BHA, limpia a fondo sin irritar, controla el exceso de sebo y deja la piel equilibrada y lista para el resto de la rutina.",
+    "ingredientes": [
+      "Té verde",
+      "Ácido salicílico (BHA)",
+      "Glicerina"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "grasa",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "poros",
+      "acne"
+    ],
+    "modoUso": "Usar una pequeña cantidad mañana y noche sobre piel húmeda, masajear y aclarar con agua tibia.",
+    "precio": 9.99,
+    "stock": 55,
+    "destacado": false
+  },
+  {
+    "slug": "beauty-of-joseon-aceite-limpiador-ginseng",
+    "nombre": "Aceite Limpiador de Ginseng",
+    "marca": "beauty-of-joseon",
+    "categoria": "limpiadores",
+    "descripcion": "Aceite de limpieza con ginseng que disuelve maquillaje, protector solar y exceso de sebo sin obstruir los poros. Emulsiona con agua para un acabado limpio, suave y nutritivo: el primer paso de la doble limpieza coreana.",
+    "ingredientes": [
+      "Ginseng",
+      "Aceite de soja",
+      "Extracto de arroz"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "grasa",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "poros",
+      "deshidratacion"
+    ],
+    "modoUso": "Masajear 2-3 pulsos sobre la piel seca, añadir agua para emulsionar y aclarar. Seguir con un limpiador a base de agua.",
+    "precio": 17.99,
+    "stock": 35,
+    "destacado": false
+  },
+  {
+    "slug": "beauty-of-joseon-green-plum-limpiador-refrescante",
+    "nombre": "Green Plum Limpiador Refrescante",
+    "marca": "beauty-of-joseon",
+    "categoria": "limpiadores",
+    "descripcion": "Limpiador a base de agua con ciruela verde que refresca e hidrata mientras elimina impurezas ligeras. Con exfoliación química muy suave, deja la piel limpia, luminosa y sin sensación de tirantez.",
+    "ingredientes": [
+      "Ciruela verde",
+      "Ácido glicólico (AHA)",
+      "Glicerina"
+    ],
+    "tipoPiel": [
+      "mixta",
+      "grasa",
+      "normal"
+    ],
+    "preocupaciones": [
+      "poros",
+      "deshidratacion"
+    ],
+    "modoUso": "Aplicar sobre piel húmeda mañana y noche, masajear y aclarar. Ideal como segundo paso tras un aceite de limpieza.",
+    "precio": 14.99,
+    "stock": 40,
+    "destacado": false
+  },
+  {
+    "slug": "round-lab-1025-dokdo-limpiador",
+    "nombre": "1025 Dokdo Limpiador",
+    "marca": "round-lab",
+    "categoria": "limpiadores",
+    "descripcion": "Limpiador con agua marina profunda de la isla Dokdo y aminoácidos que limpia con suavidad manteniendo la hidratación. Su fórmula de pH débilmente ácido calma la piel sensible y evita la tirantez tras el lavado.",
+    "ingredientes": [
+      "Agua marina de Dokdo",
+      "Aminoácidos",
+      "Pantenol"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "grasa",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "rojez"
+    ],
+    "modoUso": "Espumar con agua, masajear sobre el rostro y aclarar. Uso diario mañana y noche.",
+    "precio": 13.99,
+    "stock": 50,
+    "destacado": false
+  },
+  {
+    "slug": "anua-heartleaf-quercetinol-espuma-limpiadora",
+    "nombre": "Heartleaf Quercetinol Espuma Limpiadora de Poros",
+    "marca": "anua",
+    "categoria": "limpiadores",
+    "descripcion": "Espuma de limpieza profunda con hoja de corazón (Houttuynia cordata) y quercetinol que desincrusta el sebo de los poros sin resecar. Con BHA suave, deja la piel fresca, calmada y con los poros visiblemente más limpios.",
+    "ingredientes": [
+      "Heartleaf (Houttuynia cordata)",
+      "Quercetinol",
+      "Ácido salicílico (BHA)"
+    ],
+    "tipoPiel": [
+      "grasa",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "poros",
+      "acne"
+    ],
+    "modoUso": "Masajear sobre piel húmeda concentrándose en la zona T y aclarar con agua tibia. Uso diario.",
+    "precio": 14.99,
+    "stock": 42,
+    "destacado": false
+  },
+  {
+    "slug": "laneige-water-bank-blue-hyaluronic-espuma-limpiadora",
+    "nombre": "Water Bank Blue Hyaluronic Espuma Limpiadora",
+    "marca": "laneige",
+    "categoria": "limpiadores",
+    "descripcion": "Espuma limpiadora con ácido hialurónico azul de origen marino que limpia mientras mantiene la hidratación de la piel. Elimina impurezas y protector solar dejando una sensación fresca, suave y confortable.",
+    "ingredientes": [
+      "Ácido hialurónico",
+      "Agua marina"
+    ],
+    "tipoPiel": [
+      "seca",
+      "mixta",
+      "normal"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "poros"
+    ],
+    "modoUso": "Espumar con agua tibia, masajear sobre el rostro y aclarar. Uso diario, mañana y noche.",
+    "precio": 24.99,
+    "stock": 30,
+    "destacado": false
+  },
+  {
+    "slug": "isntree-yam-root-leche-limpiadora-vegana",
+    "nombre": "Yam Root Leche Limpiadora Vegana",
+    "marca": "isntree",
+    "categoria": "limpiadores",
+    "descripcion": "Leche limpiadora vegana con ñame coreano (75%) que elimina impurezas y maquillaje sin jabones agresivos. Su fórmula cremosa respeta la barrera cutánea: ideal para pieles secas y sensables que buscan limpieza sin tirantez.",
+    "ingredientes": [
+      "Ñame coreano",
+      "Ceramidas",
+      "Aminoácidos"
+    ],
+    "tipoPiel": [
+      "seca",
+      "sensible",
+      "normal"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "rojez"
+    ],
+    "modoUso": "Masajear sobre piel seca o húmeda y aclarar con agua tibia. Uso diario.",
+    "precio": 16.99,
+    "stock": 32,
+    "destacado": false
+  },
+  {
+    "slug": "torriden-dive-in-espuma-limpiadora-hialuronico",
+    "nombre": "DIVE IN Espuma Limpiadora con Hialurónico",
+    "marca": "torriden",
+    "categoria": "limpiadores",
+    "descripcion": "Espuma con ácido hialurónico de bajo peso molecular que limpia sin dejar tirantez. Su fórmula suave de pH débilmente ácido elimina impurezas manteniendo la hidratación, ideal para pieles secas y sensibles.",
+    "ingredientes": [
+      "Ácido hialurónico (5 tipos)",
+      "Pantenol",
+      "Centella asiática"
+    ],
+    "tipoPiel": [
+      "seca",
+      "mixta",
+      "sensible",
+      "normal"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "rojez"
+    ],
+    "modoUso": "Espumar en las manos con agua, masajear suavemente y aclarar. Uso diario mañana y noche.",
+    "precio": 12.99,
+    "stock": 44,
+    "destacado": false
+  },
+  {
+    "slug": "la-roche-posay-serozinc-agua-termal-zinc",
+    "nombre": "Serozinc Agua Termal con Zinc",
+    "marca": "la-roche-posay",
+    "categoria": "tonicos-esencias",
+    "descripcion": "Bruma tónica con agua termal de La Roche-Posay y sulfato de zinc que calma las rojeces y matifica la piel grasa propensa a imperfecciones. Ideal para refrescar y preparar la piel tras la limpieza.",
+    "ingredientes": [
+      "Agua termal de La Roche-Posay",
+      "Sulfato de zinc"
+    ],
+    "tipoPiel": [
+      "grasa",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "acne",
+      "poros",
+      "rojez"
+    ],
+    "modoUso": "Rociar sobre la piel limpia a 15-20 cm, dejar secar o retirar el exceso con un pañuelo. Uso mañana y noche o cuando se necesite.",
+    "precio": 14.99,
+    "stock": 50,
+    "destacado": false
+  },
+  {
+    "slug": "loreal-revitalift-tonico-acido-glicolico",
+    "nombre": "Revitalift Tónico con Ácido Glicólico",
+    "marca": "loreal-paris",
+    "categoria": "tonicos-esencias",
+    "descripcion": "Tónico exfoliante con 5% de ácido glicólico y aloe vera que renueva la superficie de la piel, difumina manchas y afina poros. Con uso regular, deja la piel más luminosa, suave y uniforme.",
+    "ingredientes": [
+      "Ácido glicólico (AHA)",
+      "Aloe vera"
+    ],
+    "tipoPiel": [
+      "normal",
+      "mixta",
+      "grasa"
+    ],
+    "preocupaciones": [
+      "manchas",
+      "poros",
+      "arrugas"
+    ],
+    "modoUso": "Aplicar con un disco de algodón sobre la piel limpia por la noche, evitando el contorno de los ojos. Empezar 2-3 veces por semana e ir aumentando.",
+    "precio": 14.99,
+    "stock": 38,
+    "destacado": false
+  },
+  {
+    "slug": "cosrx-advanced-snail-96-mucin-esencia",
+    "nombre": "Advanced Snail 96 Mucin Power Essence",
+    "marca": "cosrx",
+    "categoria": "tonicos-esencias",
+    "descripcion": "La esencia coreana más famosa: 96% de filtrado de mucina de caracol que repara, hidrata y aporta luminosidad. Regenera la barrera cutánea, difumina marcas y devuelve elasticidad a la piel apagada o deshidratada.",
+    "ingredientes": [
+      "Mucina de caracol",
+      "Centella asiática"
+    ],
+    "tipoPiel": [
+      "seca",
+      "normal",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "arrugas",
+      "manchas"
+    ],
+    "modoUso": "Aplicar 2-3 gotas sobre la piel limpia y dar palmaditas suaves hasta su absorción. Uso mañana y noche.",
+    "precio": 21.99,
+    "stock": 52,
+    "destacado": true
+  },
+  {
+    "slug": "cosrx-aha-bha-tonico-tratamiento-aclarante",
+    "nombre": "AHA/BHA Tónico Tratamiento Aclarante",
+    "marca": "cosrx",
+    "categoria": "tonicos-esencias",
+    "descripcion": "Tónico que combina AHA y BHA de origen vegetal para exfoliar suavemente, mantener los poros limpios y preparar la piel para los siguientes pasos. Minimiza las imperfecciones y aporta luminosidad sin irritar.",
+    "ingredientes": [
+      "AHA",
+      "Ácido salicílico (BHA)",
+      "Agua marina"
+    ],
+    "tipoPiel": [
+      "grasa",
+      "mixta",
+      "normal"
+    ],
+    "preocupaciones": [
+      "poros",
+      "acne"
+    ],
+    "modoUso": "Aplicar con algodón o con las manos sobre piel limpia, mañana y noche. Evitar combinar el mismo día con otros exfoliantes fuertes.",
+    "precio": 14.99,
+    "stock": 46,
+    "destacado": false
+  },
+  {
+    "slug": "anua-heartleaf-77-tonico-calmente",
+    "nombre": "Heartleaf 77% Tónico Calmante",
+    "marca": "anua",
+    "categoria": "tonicos-esencias",
+    "descripcion": "Tónico viral con 77% de extracto de hoja de corazón (Houttuynia cordata) que calma intensamente las pieles irritadas y rojas. Hidrata, equilibra el sebo y ayuda a controlar los brotes con una fórmula minimalista.",
+    "ingredientes": [
+      "Heartleaf (Houttuynia cordata)",
+      "Centella asiática"
+    ],
+    "tipoPiel": [
+      "sensible",
+      "seca",
+      "grasa",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "rojez",
+      "acne",
+      "deshidratacion"
+    ],
+    "modoUso": "Verter en las palmas o en un disco de algodón y aplicar dando palmaditas sobre la piel limpia. Mañana y noche.",
+    "precio": 22.99,
+    "stock": 40,
+    "destacado": true
+  },
+  {
+    "slug": "round-lab-1025-dokdo-tonico",
+    "nombre": "1025 Dokdo Tónico",
+    "marca": "round-lab",
+    "categoria": "tonicos-esencias",
+    "descripcion": "Tónico hidratante coreano con agua marina de Dokdo que calma y reequilibra la piel desde el primer paso. Su textura ligera prepara la piel para absorber mejor sérums y cremas, sin dejar sensación pegajosa.",
+    "ingredientes": [
+      "Agua marina de Dokdo",
+      "Pantenol",
+      "Aminoácidos"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "grasa",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "rojez",
+      "poros"
+    ],
+    "modoUso": "Aplicar con las manos o algodón sobre la piel limpia, dar palmaditas hasta absorber. Mañana y noche.",
+    "precio": 16.99,
+    "stock": 55,
+    "destacado": false
+  },
+  {
+    "slug": "skin1004-centella-ampoule",
+    "nombre": "Madagascar Centella Ampoule",
+    "marca": "skin1004",
+    "categoria": "tonicos-esencias",
+    "descripcion": "Esencia-ampolla con extracto de centella asiática pura de Madagascar que calma, repara e hidrata. Ideal para pieles sensibles, irritadas o con rojez: refuerza la barrera y acelera la recuperación cutánea.",
+    "ingredientes": [
+      "Centella asiática"
+    ],
+    "tipoPiel": [
+      "sensible",
+      "seca",
+      "grasa",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "rojez",
+      "deshidratacion",
+      "acne"
+    ],
+    "modoUso": "Aplicar 2-3 gotas sobre piel limpia y dar palmaditas. Se puede usar en capas para mayor hidratación. Mañana y noche.",
+    "precio": 23.99,
+    "stock": 42,
+    "destacado": false
+  }
+]

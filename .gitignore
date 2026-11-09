@@ -15,6 +15,10 @@
 
 # next.js
 /.next/
+/.glasskin-next/
+/.glasskin-runtime/
+/.glasskin-output/
+/.glasskin-build-output/
 /out/
 
 # production
@@ -29,6 +33,15 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+.glasskin-dev.log
+glasskin-preview.log
+glasskin-server.log
+glasskin-launcher-output.log
+glasskin-launcher-error.log
+.glasskin-server.json
+.glasskin-owner-setup.lock
+.glasskin-customer-session-secret
+.env.owner-setup-*.tmp
 
 # env files (can opt-in for committing if needed)
 .env*
@@ -36,6 +49,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Prisma Platform local state and one-time credentials
+.prisma/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/src/generated/prisma

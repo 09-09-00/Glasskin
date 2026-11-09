@@ -1,0 +1,285 @@
+[
+  {
+    "slug": "cosrx-advanced-snail-92-all-in-one-crema",
+    "nombre": "Advanced Snail 92 All In One Cream",
+    "marca": "cosrx",
+    "categoria": "hidratantes",
+    "descripcion": "Crema multifunción con 92% de mucina de caracol que hidrata, repara y aporta luminosidad. Regenera la piel dañada, difumina marcas y mantiene la elasticidad: el clásico todo-en-uno coreano.",
+    "ingredientes": [
+      "Mucina de caracol",
+      "Centella asiática"
+    ],
+    "tipoPiel": [
+      "seca",
+      "normal",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "arrugas",
+      "manchas"
+    ],
+    "modoUso": "Aplicar una cantidad adecuada al final de la rutina, mañana y noche, con palmaditas suaves.",
+    "precio": 25.99,
+    "stock": 40,
+    "destacado": false
+  },
+  {
+    "slug": "beauty-of-joseon-dynasty-cream",
+    "nombre": "Dynasty Cream",
+    "marca": "beauty-of-joseon",
+    "categoria": "hidratantes",
+    "descripcion": "Crema icónica de Beauty of Joseon con péptidos, niacinamida y extracto de arroz. Hidrata profundamente, refuerza la barrera y aporta un acabado luminoso y suave, ideal como último paso de la rutina.",
+    "ingredientes": [
+      "Péptidos",
+      "Niacinamida",
+      "Extracto de arroz",
+      "Aceite de jojoba"
+    ],
+    "tipoPiel": [
+      "seca",
+      "normal",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "arrugas",
+      "manchas"
+    ],
+    "modoUso": "Aplicar mañana y noche como último paso de la rutina, masajeando suavemente.",
+    "precio": 25.99,
+    "stock": 38,
+    "destacado": true
+  },
+  {
+    "slug": "round-lab-birch-juice-crema-hidratante",
+    "nombre": "Birch Juice Crema Hidratante",
+    "marca": "round-lab",
+    "categoria": "hidratantes",
+    "descripcion": "Crema hidratante con savia de abedul que refresca e hidrata en profundidad. Su textura ligera tipo gel-crema calma la piel sensible y la mantiene flexible durante todo el día.",
+    "ingredientes": [
+      "Savia de abedul",
+      "Pantenol",
+      "Ácido hialurónico"
+    ],
+    "tipoPiel": [
+      "seca",
+      "sensible",
+      "normal",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "rojez"
+    ],
+    "modoUso": "Aplicar mañana y noche como último paso de la rutina, con movimientos suaves.",
+    "precio": 23.99,
+    "stock": 34,
+    "destacado": false
+  },
+  {
+    "slug": "la-roche-posay-anthelios-leche-fundente-spf60",
+    "nombre": "Anthelios Leche Fundente SPF 60",
+    "marca": "la-roche-posay",
+    "categoria": "protectores-solares",
+    "descripcion": "Protector solar con leche fundente SPF 60 y filtros de amplio espectro UVA/UVB. Textura ligera que se funde con la piel sin dejar rastro blanco, apta para uso diario incluso bajo maquillaje.",
+    "ingredientes": [
+      "Filtros UVA/UVB (Mexoryl)",
+      "Glicerina",
+      "Agua termal de La Roche-Posay"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "mixta",
+      "grasa",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "manchas",
+      "arrugas"
+    ],
+    "modoUso": "Aplicar generosamente 15 minutos antes de la exposición solar y renovar cada 2 horas.",
+    "precio": 26.99,
+    "stock": 42,
+    "destacado": true
+  },
+  {
+    "slug": "neutrogena-ultra-sheer-dry-touch-spf55",
+    "nombre": "Ultra Sheer Dry-Touch SPF 55",
+    "marca": "neutrogena",
+    "categoria": "protectores-solares",
+    "descripcion": "Protector solar con tecnología Dry-Touch que deja un acabado seco y sin brillo. Amplio espectro UVA/UVB con textura ultraligera e invisible sobre la piel, ideal para el uso diario.",
+    "ingredientes": [
+      "Filtros UVA/UVB",
+      "Ácido hialurónico"
+    ],
+    "tipoPiel": [
+      "normal",
+      "mixta",
+      "grasa"
+    ],
+    "preocupaciones": [
+      "manchas",
+      "poros"
+    ],
+    "modoUso": "Aplicar generosamente antes de la exposición solar y renovar cada 2 horas.",
+    "precio": 12.99,
+    "stock": 60,
+    "destacado": false
+  },
+  {
+    "slug": "loreal-uv-defender-fluido-invisible-spf50",
+    "nombre": "UV Defender Fluido Invisible SPF 50+",
+    "marca": "loreal-paris",
+    "categoria": "protectores-solares",
+    "descripcion": "Fluido protector invisible SPF 50+ de amplio espectro con antioxidantes. Textura ultraligera y matificante que se absorbe al instante y protege de la radiación UV y de la contaminación.",
+    "ingredientes": [
+      "Filtros UVA/UVB",
+      "Glicerina"
+    ],
+    "tipoPiel": [
+      "normal",
+      "mixta",
+      "grasa"
+    ],
+    "preocupaciones": [
+      "manchas",
+      "arrugas",
+      "poros"
+    ],
+    "modoUso": "Aplicar por la mañana como último paso de la rutina. Renovar cada 2 horas si hay exposición directa.",
+    "precio": 29.99,
+    "stock": 30,
+    "destacado": false
+  },
+  {
+    "slug": "beauty-of-joseon-relief-sun-arroz-probioticos-spf50",
+    "nombre": "Relief Sun: Arroz + Probióticos SPF 50+",
+    "marca": "beauty-of-joseon",
+    "categoria": "protectores-solares",
+    "descripcion": "El protector solar coreano más famoso: textura crema ligera con arroz y probióticos. SPF50+ PA++++ de amplio espectro que hidrata, calma y deja un acabado natural sin rastro blanco.",
+    "ingredientes": [
+      "Extracto de arroz",
+      "Probióticos",
+      "Niacinamida"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "mixta",
+      "grasa",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "manchas",
+      "deshidratacion"
+    ],
+    "modoUso": "Aplicar como último paso de la rutina de mañana, 15 minutos antes de salir. Renovar cada 2-3 horas.",
+    "precio": 17.99,
+    "stock": 65,
+    "destacado": true
+  },
+  {
+    "slug": "anua-mineral-weightless-sunscreen",
+    "nombre": "Mineral Weightless Finish Sunscreen",
+    "marca": "anua",
+    "categoria": "protectores-solares",
+    "descripcion": "Protector solar 100% mineral con acabado ligero e invisible. Apto para pieles sensibles y reactivas: no deja rastro blanco, calma la piel y protege de UVA/UVB con amplio espectro.",
+    "ingredientes": [
+      "Óxido de zinc",
+      "Dióxido de titanio",
+      "Heartleaf (Houttuynia cordata)"
+    ],
+    "tipoPiel": [
+      "grasa",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "poros",
+      "manchas",
+      "rojez"
+    ],
+    "modoUso": "Aplicar por la mañana como último paso de la rutina. Renovar cada 2 horas con exposición solar.",
+    "precio": 19.99,
+    "stock": 34,
+    "destacado": false
+  },
+  {
+    "slug": "round-lab-birch-juice-sun-serum-spf50",
+    "nombre": "Birch Juice Sun Serum SPF 50",
+    "marca": "round-lab",
+    "categoria": "protectores-solares",
+    "descripcion": "Sérum solar con savia de abedul que hidrata mientras protege con SPF 50 PA++++. Textura ligera con acabado húmedo, ideal para pieles secas que buscan protección sin tirantez.",
+    "ingredientes": [
+      "Savia de abedul",
+      "Filtros UVA/UVB",
+      "Ácido hialurónico"
+    ],
+    "tipoPiel": [
+      "seca",
+      "sensible",
+      "normal",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "manchas"
+    ],
+    "modoUso": "Aplicar por la mañana como último paso, dando palmaditas suaves. Renovar cada 2 horas.",
+    "precio": 21.99,
+    "stock": 36,
+    "destacado": false
+  },
+  {
+    "slug": "neutrogena-hydro-boost-mascarilla-hidrogel",
+    "nombre": "Hydro Boost Mascarilla 100% Hidrogel",
+    "marca": "neutrogena",
+    "categoria": "mascarillas",
+    "descripcion": "Mascarilla 100% hidrogel con ácido hialurónico que aporta hidratación intensiva en 15-30 minutos. Se adhiere a la piel dejándola suave, flexible y jugosa al retirarla.",
+    "ingredientes": [
+      "Ácido hialurónico",
+      "Extracto de oliva"
+    ],
+    "tipoPiel": [
+      "seca",
+      "normal",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "deshidratacion"
+    ],
+    "modoUso": "Aplicar sobre piel limpia durante 15-30 minutos, retirar y dar palmaditas para absorber el exceso.",
+    "precio": 4.99,
+    "stock": 70,
+    "destacado": false
+  },
+  {
+    "slug": "medicube-collagen-night-wrapping-mask",
+    "nombre": "Collagen Night Wrapping Mask",
+    "marca": "medicube",
+    "categoria": "mascarillas",
+    "descripcion": "Mascarilla de noche que envuelve la piel en una película de colágeno para evitar la pérdida de agua durante el sueño. Al despertar la piel está más firme, jugosa y luminosa; se retira como una película.",
+    "ingredientes": [
+      "Colágeno",
+      "Niacinamida",
+      "Ácido hialurónico"
+    ],
+    "tipoPiel": [
+      "seca",
+      "normal",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "arrugas",
+      "deshidratacion",
+      "poros"
+    ],
+    "modoUso": "Aplicar una capa fina como último paso de la rutina nocturna y esperar 15 minutos hasta que seque. Retirar por la mañana con agua tibia. Uso 2-3 veces por semana.",
+    "precio": 28.99,
+    "stock": 30,
+    "destacado": false
+  }
+]

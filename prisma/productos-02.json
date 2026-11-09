@@ -1,0 +1,516 @@
+[
+  {
+    "slug": "laneige-cream-skin-tonico-hidratante",
+    "nombre": "Cream Skin Tón e Hidratante",
+    "marca": "laneige",
+    "categoria": "tonicos-esencias",
+    "descripcion": "Tónico que funde tónico y crema en una sola textura lechosa. Con ceramidas y péptidos, hidrata profundamente, refuerza la barrera y deja la piel suave y confortable todo el día.",
+    "ingredientes": [
+      "Ceramidas",
+      "Péptidos",
+      "Glicerina"
+    ],
+    "tipoPiel": [
+      "seca",
+      "sensible",
+      "normal",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "rojez"
+    ],
+    "modoUso": "Aplicar con las manos dando palmaditas sobre la piel limpia. Repetir en capas si la piel está muy seca. Mañana y noche.",
+    "precio": 28.99,
+    "stock": 28,
+    "destacado": false
+  },
+  {
+    "slug": "isntree-hyaluronic-acid-tonico",
+    "nombre": "Hyaluronic Acid Tónico",
+    "marca": "isntree",
+    "categoria": "tonicos-esencias",
+    "descripcion": "Tónico con 8 tipos de ácido hialurónico de distintos pesos moleculares que hidrata en múltiples capas de la piel. Textura ligera y sedosa que deja la piel flexible, jugosa y sin tirantez.",
+    "ingredientes": [
+      "Ácido hialurónico (8 tipos)",
+      "Trealosa",
+      "Pantenol"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "grasa",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "deshidratacion"
+    ],
+    "modoUso": "Aplicar sobre piel limpia ligeramente húmeda, dar palmaditas. Se pueden aplicar varias capas. Mañana y noche.",
+    "precio": 19.99,
+    "stock": 48,
+    "destacado": false
+  },
+  {
+    "slug": "isntree-onion-newpair-esencia-tonico",
+    "nombre": "Onion Newpair Esencia Tónico",
+    "marca": "isntree",
+    "categoria": "tonicos-esencias",
+    "descripcion": "Tónico-esencia con extracto de cebolla roja y niacinamida que aclara las marcas post-acné y calma la piel. Refuerza la barrera, reduce las rojeces y unifica el tono con uso constante.",
+    "ingredientes": [
+      "Extracto de cebolla roja",
+      "Niacinamida",
+      "Centella asiática"
+    ],
+    "tipoPiel": [
+      "sensible",
+      "grasa",
+      "mixta",
+      "normal"
+    ],
+    "preocupaciones": [
+      "manchas",
+      "rojez",
+      "acne"
+    ],
+    "modoUso": "Aplicar con palmaditas sobre la piel limpia mañana y noche. Evitar el contacto directo con los ojos.",
+    "precio": 21.99,
+    "stock": 30,
+    "destacado": false
+  },
+  {
+    "slug": "torriden-dive-in-tonico-hialuronico",
+    "nombre": "DIVE IN Tónico con Hialurónico",
+    "marca": "torriden",
+    "categoria": "tonicos-esencias",
+    "descripcion": "Tónico con ácido hialurónico de 5 pesos moleculares y alantoína que hidrata en profundidad y calma. Textura ligera tipo agua que prepara la piel para el resto de la rutina sin dejar residuo.",
+    "ingredientes": [
+      "Ácido hialurónico (5 tipos)",
+      "Allantoína",
+      "Centella asiática"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "grasa",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "rojez"
+    ],
+    "modoUso": "Aplicar con las manos o algodón tras la limpieza, dar palmaditas hasta absorber. Mañana y noche.",
+    "precio": 17.99,
+    "stock": 46,
+    "destacado": false
+  },
+  {
+    "slug": "la-roche-posay-hyalu-b5-serum",
+    "nombre": "Hyalu B5 Serum",
+    "marca": "la-roche-posay",
+    "categoria": "serums",
+    "descripcion": "Sérum concentrado con dos tipos de ácido hialurónico y vitamina B5 (pantenol) que rellena las arrugas e hidrata intensamente. Repara la barrera cutánea y devuelve elasticidad y luminosidad a la piel.",
+    "ingredientes": [
+      "Ácido hialurónico",
+      "Pantenol",
+      "Glicerina"
+    ],
+    "tipoPiel": [
+      "seca",
+      "sensible",
+      "normal",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "arrugas"
+    ],
+    "modoUso": "Aplicar 3-4 gotas sobre piel limpia mañana y noche antes de la crema. Se puede mezclar con la hidratante.",
+    "precio": 39.99,
+    "stock": 30,
+    "destacado": false
+  },
+  {
+    "slug": "neutrogena-bright-boost-serum-iluminador",
+    "nombre": "Bright Boost Serum Iluminador",
+    "marca": "neutrogena",
+    "categoria": "serums",
+    "descripcion": "Sérum iluminador con neoglucosamina que acelera la renovación celular y difumina manchas y el apagón. Deja la piel más luminosa, uniforme y con los poros visiblemente refinados.",
+    "ingredientes": [
+      "Neoglucosamina",
+      "Ácido hialurónico"
+    ],
+    "tipoPiel": [
+      "normal",
+      "mixta",
+      "grasa"
+    ],
+    "preocupaciones": [
+      "manchas",
+      "poros",
+      "arrugas"
+    ],
+    "modoUso": "Aplicar sobre el rostro limpio por la noche, antes de la crema hidratante. Usar protección solar durante el día.",
+    "precio": 24.99,
+    "stock": 34,
+    "destacado": false
+  },
+  {
+    "slug": "loreal-revitalift-serum-acido-hialuronico",
+    "nombre": "Revitalift Serum Ácido Hialurónico 1.5%",
+    "marca": "loreal-paris",
+    "categoria": "serums",
+    "descripcion": "Sérum con 1.5% de ácido hialurónico macro y micromolecular que hidrata en profundidad y rellena visiblemente las líneas. La piel queda más jugosa, firme y luminosa desde las primeras semanas.",
+    "ingredientes": [
+      "Ácido hialurónico",
+      "Glicerina"
+    ],
+    "tipoPiel": [
+      "seca",
+      "normal",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "arrugas"
+    ],
+    "modoUso": "Aplicar 3-4 gotas mañana y noche sobre piel limpia, antes de la crema hidratante.",
+    "precio": 29.99,
+    "stock": 40,
+    "destacado": false
+  },
+  {
+    "slug": "medicube-zero-pore-serum",
+    "nombre": "Zero Pore Serum",
+    "marca": "medicube",
+    "categoria": "serums",
+    "descripcion": "Sérum texturizante con niacinamida y extractos vegetales que reduce visiblemente el tamaño de los poros y controla el sebo. Afina la textura, difumina puntos negros y equilibra las pieles grasas.",
+    "ingredientes": [
+      "Niacinamida",
+      "Té verde",
+      "AHA"
+    ],
+    "tipoPiel": [
+      "grasa",
+      "mixta",
+      "normal"
+    ],
+    "preocupaciones": [
+      "poros",
+      "acne"
+    ],
+    "modoUso": "Aplicar sobre piel limpia mañana y/o noche antes de la crema. Usar protector solar durante el día.",
+    "precio": 28.99,
+    "stock": 32,
+    "destacado": false
+  },
+  {
+    "slug": "cosrx-the-vitamin-c-23-serum",
+    "nombre": "The Vitamin C 23 Serum",
+    "marca": "cosrx",
+    "categoria": "serums",
+    "descripcion": "Sérum con 23% de vitamina C pura (ácido ascórbico) que aclara manchas y marcas post-acné, ilumina y estimula el colágeno. Textura densa y potente: ideal para un tono uniforme y luminoso con uso constante.",
+    "ingredientes": [
+      "Vitamina C (ácido ascórbico)",
+      "Niacinamida",
+      "Glutatión"
+    ],
+    "tipoPiel": [
+      "normal",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "manchas",
+      "arrugas",
+      "poros"
+    ],
+    "modoUso": "Aplicar 2-3 gotas solo por la noche sobre piel seca, después del tónico. Uso imperativo de protector solar por la mañana. Empezar en días alternos si la piel es sensible.",
+    "precio": 25.99,
+    "stock": 26,
+    "destacado": false
+  },
+  {
+    "slug": "beauty-of-joseon-glow-deep-serum-arroz-arbutina",
+    "nombre": "Glow Deep Serum: Arroz + Arbutina",
+    "marca": "beauty-of-joseon",
+    "categoria": "serums",
+    "descripcion": "Sérum iluminador con extracto de arroz y 2% de alfa-arbutina que aclara gradualmente manchas y el apagón. Ligero y sin pegajosidad, deja un glow natural y un tono uniforme.",
+    "ingredientes": [
+      "Extracto de arroz",
+      "Alfa-arbutina",
+      "Niacinamida"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "manchas",
+      "deshidratacion"
+    ],
+    "modoUso": "Aplicar 2-3 gotas mañana y noche sobre piel limpia, dando palmaditas suaves.",
+    "precio": 17.99,
+    "stock": 50,
+    "destacado": false
+  },
+  {
+    "slug": "beauty-of-joseon-glow-serum-propolis-niacinamida",
+    "nombre": "Glow Serum: Propóleo + Niacinamida",
+    "marca": "beauty-of-joseon",
+    "categoria": "serums",
+    "descripcion": "Sérum con propóleo negro y niacinamida que calma, nutre y combate las imperfecciones. Ideal para pieles mixtas o grasas con brotes ocasionales: hidrata sin sensación grasa y unifica el tono.",
+    "ingredientes": [
+      "Propóleo",
+      "Niacinamida",
+      "Aceite de jojoba"
+    ],
+    "tipoPiel": [
+      "mixta",
+      "grasa",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "acne",
+      "manchas",
+      "poros"
+    ],
+    "modoUso": "Aplicar 2-3 gotas mañana y noche sobre piel limpia, dar palmaditas hasta absorber.",
+    "precio": 17.99,
+    "stock": 48,
+    "destacado": false
+  },
+  {
+    "slug": "skin1004-hyalu-cica-blue-serum",
+    "nombre": "Hyalu-Cica Blue Serum",
+    "marca": "skin1004",
+    "categoria": "serums",
+    "descripcion": "Sérum que combina centella asiática y 5 tipos de ácido hialurónico para calmar e hidratar a la vez. Su fórmula azulada con guaiazuleno reduce las rojeces y deja la piel confortable, jugosa y equilibrada.",
+    "ingredientes": [
+      "Centella asiática",
+      "Ácido hialurónico (5 tipos)",
+      "Guaiazuleno"
+    ],
+    "tipoPiel": [
+      "sensible",
+      "seca",
+      "mixta",
+      "normal"
+    ],
+    "preocupaciones": [
+      "rojez",
+      "deshidratacion"
+    ],
+    "modoUso": "Aplicar 2-3 gotas mañana y noche tras el tónico, dando palmaditas suaves.",
+    "precio": 24.99,
+    "stock": 36,
+    "destacado": false
+  },
+  {
+    "slug": "laneige-water-bank-blue-hyaluronic-serum",
+    "nombre": "Water Bank Blue Hyaluronic Serum",
+    "marca": "laneige",
+    "categoria": "serums",
+    "descripcion": "Sérum hidratante con ácido hialurónico azul de origen marino y activos de barrera. Aporta hidratación intensa y duradera, refuerza la piel contra agresiones externas y la deja flexible y luminosa.",
+    "ingredientes": [
+      "Ácido hialurónico",
+      "Agua marina",
+      "Squalano"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "mixta",
+      "grasa",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "arrugas"
+    ],
+    "modoUso": "Aplicar 2-3 gotas mañana y noche tras el tónico, antes de la crema.",
+    "precio": 39.99,
+    "stock": 28,
+    "destacado": false
+  },
+  {
+    "slug": "isntree-c-niacin-toning-ampoule",
+    "nombre": "C-Niacin Toning Ampoule",
+    "marca": "isntree",
+    "categoria": "serums",
+    "descripcion": "Ampolla con vitamina C y niacinamida que aclara las manchas, unifica el tono y aporta luminosidad de forma gradual y sin irritación. Textura ligera apta para uso diario.",
+    "ingredientes": [
+      "Vitamina C",
+      "Niacinamida",
+      "Pantenol"
+    ],
+    "tipoPiel": [
+      "normal",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "manchas",
+      "poros"
+    ],
+    "modoUso": "Aplicar 2-3 gotas mañana y noche tras el tónico. Usar protector solar por la mañana.",
+    "precio": 22.99,
+    "stock": 30,
+    "destacado": false
+  },
+  {
+    "slug": "torriden-dive-in-serum-hialuronico",
+    "nombre": "DIVE IN Serum con Hialurónico",
+    "marca": "torriden",
+    "categoria": "serums",
+    "descripcion": "Sérum hidratante premiado con ácido hialurónico de bajo peso molecular (complejo 5D) y alantoína. Penetra en las capas de la epidermis, hidrata en profundidad y calma la piel sensible.",
+    "ingredientes": [
+      "Ácido hialurónico (5 tipos)",
+      "Allantoína",
+      "Pantenol"
+    ],
+    "tipoPiel": [
+      "normal",
+      "seca",
+      "grasa",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "rojez"
+    ],
+    "modoUso": "Aplicar 2-3 gotas mañana y noche tras el tónico, dando palmaditas hasta absorber.",
+    "precio": 19.99,
+    "stock": 44,
+    "destacado": true
+  },
+  {
+    "slug": "medicube-deep-vitamin-c-capsule-serum",
+    "nombre": "Deep Vitamin C Capsule Serum",
+    "marca": "medicube",
+    "categoria": "serums",
+    "descripcion": "Sérum con cápsulas de vitamina C que se disuelven al masajear, difuminando manchas y aportando luminosidad inmediata. Unifica el tono y mejora la textura de la piel con uso constante.",
+    "ingredientes": [
+      "Vitamina C",
+      "Niacinamida",
+      "Pantenol"
+    ],
+    "tipoPiel": [
+      "normal",
+      "mixta",
+      "grasa"
+    ],
+    "preocupaciones": [
+      "manchas",
+      "arrugas",
+      "poros"
+    ],
+    "modoUso": "Aplicar 2-3 pulsos mañana y/o noche sobre piel limpia, masajear para romper las cápsulas. Usar protector solar por la mañana.",
+    "precio": 32.99,
+    "stock": 30,
+    "destacado": false
+  },
+  {
+    "slug": "la-roche-posay-toleriane-double-repair-crema",
+    "nombre": "Toleriane Double Repair Crema Hidratante",
+    "marca": "la-roche-posay",
+    "categoria": "hidratantes",
+    "descripcion": "Crema hidratante ligera con niacinamida, ceramidas y prebióticos que restaura la barrera cutánea y aporta hidratación prolongada. Textura sin aceites apta incluso para pieles sensibles.",
+    "ingredientes": [
+      "Niacinamida",
+      "Ceramidas",
+      "Glicerina"
+    ],
+    "tipoPiel": [
+      "seca",
+      "mixta",
+      "sensible",
+      "normal"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "rojez"
+    ],
+    "modoUso": "Aplicar mañana y/o noche sobre piel limpia con movimientos suaves ascendentes.",
+    "precio": 22.99,
+    "stock": 44,
+    "destacado": false
+  },
+  {
+    "slug": "neutrogena-hydro-boost-water-gel",
+    "nombre": "Hydro Boost Water Gel",
+    "marca": "neutrogena",
+    "categoria": "hidratantes",
+    "descripcion": "Gel hidratante icónico con ácido hialurónico y textura agua que se absorbe al instante sin dejar grasa. Mantiene la piel suave, flexible e hidratada durante todo el día.",
+    "ingredientes": [
+      "Ácido hialurónico",
+      "Extracto de oliva"
+    ],
+    "tipoPiel": [
+      "seca",
+      "normal",
+      "mixta"
+    ],
+    "preocupaciones": [
+      "deshidratacion"
+    ],
+    "modoUso": "Aplicar mañana y noche sobre piel limpia con movimientos circulares suaves.",
+    "precio": 19.99,
+    "stock": 58,
+    "destacado": false
+  },
+  {
+    "slug": "loreal-age-perfect-hydra-nutrition-golden-balm",
+    "nombre": "Age Perfect Hydra-Nutrition Golden Balm",
+    "marca": "loreal-paris",
+    "categoria": "hidratantes",
+    "descripcion": "Bálsamo nutritivo con aceites y miel que funde al contacto con la piel, aportando nutrición intensa a las pieles secas y maduras. Reconforta, suaviza y devuelve la elasticidad sin sensación grasa.",
+    "ingredientes": [
+      "Aceites nutritivos",
+      "Miel",
+      "Glicerina"
+    ],
+    "tipoPiel": [
+      "seca",
+      "normal"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "arrugas"
+    ],
+    "modoUso": "Aplicar mañana y/o noche sobre el rostro limpio, masajeando suavemente hasta su absorción.",
+    "precio": 27.99,
+    "stock": 24,
+    "destacado": false
+  },
+  {
+    "slug": "medicube-hyaluronic-ceramide-jelly-cream",
+    "nombre": "Hyaluronic Ceramide Jelly Cream",
+    "marca": "medicube",
+    "categoria": "hidratantes",
+    "descripcion": "Crema de textura jelly con ácido hialurónico y ceramidas que hidrata intensamente y refuerza la barrera cutánea. Su textura ligera se funde con la piel dejándola jugosa, suave y sin sensación pegajosa.",
+    "ingredientes": [
+      "Ácido hialurónico",
+      "Ceramidas",
+      "Pantenol"
+    ],
+    "tipoPiel": [
+      "seca",
+      "normal",
+      "mixta",
+      "sensible"
+    ],
+    "preocupaciones": [
+      "deshidratacion",
+      "rojez"
+    ],
+    "modoUso": "Aplicar al final de la rutina, mañana y noche, con suaves palmaditas y movimientos ascendentes.",
+    "precio": 29.99,
+    "stock": 30,
+    "destacado": false
+  }
+]
