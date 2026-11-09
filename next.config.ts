@@ -4,13 +4,19 @@ import path from "node:path";
 
 const esBuildProduccion = process.env.NEXT_PHASE === "phase-production-build"
   || process.argv.some((argumento) => argumento === "build" || argumento === "start");
-const directorioPredeterminado = esBuildProduccion ? ".glasskin-build-output" : ".glasskin-runtime";
+const usaRutaLocalDeWindows = esBuildProduccion
+  && process.platform === "win32"
+  && Boolean(process.env.LOCALAPPDATA)
+  && !process.env.NEXT_DIST_DIR;
+const directorioPredeterminado = esBuildProduccion
+  ? usaRutaLocalDeWindows ? ".glasskin-build-output" : ".next"
+  : ".glasskin-runtime";
 let directorioDeSalida = process.env.NEXT_DIST_DIR || directorioPredeterminado;
 
 // La salida de desarrollo queda dentro del proyecto para que Node resuelva los
 // paquetes externos desde node_modules. La compilación de producción usa una
 // caché separada de AppData para que OneDrive no gestione sus archivos temporales.
-if (esBuildProduccion && process.platform === "win32" && process.env.LOCALAPPDATA && !process.env.NEXT_DIST_DIR) {
+if (usaRutaLocalDeWindows) {
   try {
     const baseLocal = path.join(process.env.LOCALAPPDATA, "Glasskin");
     const destino = path.join(baseLocal, "build-runtime", "dist");
