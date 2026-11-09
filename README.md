@@ -137,6 +137,15 @@ ADMIN_PASSWORD=""           # Contraseña robusta elegida por el propietario
 ADMIN_SESSION_SECRET=""     # Cadena aleatoria larga para firmar la sesión
 ```
 
+## Despliegue académico en Vercel y Supabase
+
+- En Supabase crea una base nueva para la demo. Usa `DATABASE_URL` con el Shared Transaction Pooler (puerto 6543) para las funciones de Vercel y `DIRECT_URL` con el Session Pooler (puerto 5432) para comandos Prisma desde tu computadora.
+- Antes de publicar, crea el esquema con `npm run db:push` y carga las marcas, categorías y catálogo base con `npm run db:seed`. Ejecuta el seed solo en esta base nueva; los pedidos y demás datos locales no se copian automáticamente.
+- En Vercel configura `DATABASE_URL`, `DIRECT_URL`, `ADMIN_USER`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET` y `CRON_SECRET` como variables privadas del proyecto.
+- Para subir fotos desde el panel, crea en Supabase Storage un bucket público llamado `product-images` y configura `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` en Vercel. Esa clave se usa solo desde el servidor y nunca debe ponerse en una variable `NEXT_PUBLIC_`.
+- En Vercel Hobby, los recordatorios automáticos se ejecutan una vez al día. Desde el servidor local se revisan cada hora; en ambos casos también pueden procesarse manualmente desde el panel.
+- Los avisos por correo quedan como borradores mientras no se configuren las credenciales de Resend.
+
 ## Funcionalidades implementadas
 
 ### ✅ Moneda PYG/USD (completa)

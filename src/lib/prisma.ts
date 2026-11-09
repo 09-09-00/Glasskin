@@ -37,7 +37,9 @@ export const prisma =
       connectionString: urlBaseDatos(),
       connectionTimeoutMillis: 15_000,
       idleTimeoutMillis: 30_000,
-      max: 10,
+      // Vercel may create many short-lived instances; keep each pg pool small
+      // so the Supabase shared transaction pooler is not overwhelmed.
+      max: 2,
     }),
   });
 

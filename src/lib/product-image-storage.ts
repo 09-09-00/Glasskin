@@ -9,6 +9,7 @@ export const MAX_PRODUCT_IMAGES = 8;
 export const MAX_PRODUCT_IMAGE_BYTES = 8 * 1024 * 1024;
 const VALID_MIME_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/avif"]);
 const PRODUCTS_ROOT = path.join(process.cwd(), "public", "productos");
+const STORAGE_BUCKET = process.env.SUPABASE_STORAGE_BUCKET?.trim() || "product-images";
 
 export interface StoredProductImage {
   url: string;
@@ -21,6 +22,20 @@ export interface StoredProductImage {
 
 function safeSlug(value: string): string {
   return value.toLowerCase().replace(/[^a-z0-9-]/g, "");
+}
+
+function storageConfig() {
+  const url = process.env.SUPABASE_URL?.trim().replace(/\/+$/, "");
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+  if (url && key) return { url, key };
+  if (process.env.VERCEL) {
+    throw new Error("Configura SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY para guardar imágenes en producción.");
+  }
+  return null;
+}
+
+function encodedObjectPath(value: string): string {
+  return value.split("/").map(encodeURIComponent).join("/");
 }
 
 export async function storeProductImage(file: File, productSlug: string): Promise<StoredProductImage> {
@@ -42,13 +57,33 @@ export async function storeProductImage(file: File, productSlug: string): Promis
     .webp({ quality: 35 })
     .toBuffer();
 
-  const directory = path.join(PRODUCTS_ROOT, slug);
-  await fs.mkdir(directory, { recursive: true });
   const filename = `${Date.now()}-${randomUUID().slice(0, 8)}.webp`;
-  await fs.writeFile(path.join(directory, filename), optimized.data);
+  const objectPath = `${slug}/${filename}`;
+  const storage = storageConfig();
+  let url: string;
+
+  if (storage) {
+    const response = await fetch(`${storage.url}/storage/v1/object/${encodeURIComponent(STORAGE_BUCKET)}/${encodedObjectPath(objectPath)}`, {
+      method: "POST",
+      headers: {
+        apikey: storage.key,
+        Authorization: `Bearer ${storage.key}`,
+        "Content-Type": "image/webp",
+        "x-upsert": "false",
+      },
+      body: optimized.data,
+    });
+    if (!response.ok) throw new Error("Supabase Storage no pudo guardar la imagen. Revisa el bucket y su configuración.");
+    url = `${storage.url}/storage/v1/object/public/${encodeURIComponent(STORAGE_BUCKET)}/${encodedObjectPath(objectPath)}`;
+  } else {
+    const directory = path.join(PRODUCTS_ROOT, slug);
+    await fs.mkdir(directory, { recursive: true });
+    await fs.writeFile(path.join(directory, filename), optimized.data);
+    url = `/productos/${slug}/${filename}`;
+  }
 
   return {
-    url: `/productos/${slug}/${filename}`,
+    url,
     width: optimized.info.width,
     height: optimized.info.height,
     mimeType: "image/webp",
@@ -58,10 +93,32 @@ export async function storeProductImage(file: File, productSlug: string): Promis
 }
 
 export async function deleteStoredProductImage(url: string): Promise<void> {
-  if (!url.startsWith("/productos/")) return;
-  const relative = url.replace(/^\/+/, "").replaceAll("/", path.sep);
-  const target = path.resolve(process.cwd(), "public", relative);
-  const root = path.resolve(PRODUCTS_ROOT) + path.sep;
-  if (!target.startsWith(root)) return;
-  await fs.rm(target, { force: true });
+  // Existing committed public images are immutable on Vercel and remain available.
+  if (url.startsWith("/productos/") && process.env.VERCEL) return;
+  if (url.startsWith("/productos/")) {
+    const relative = url.replace(/^\/+/, "").replaceAll("/", path.sep);
+    const target = path.resolve(process.cwd(), "public", relative);
+    const root = path.resolve(PRODUCTS_ROOT) + path.sep;
+    if (!target.startsWith(root)) return;
+    await fs.rm(target, { force: true });
+    return;
+  }
+
+  const storage = storageConfig();
+  if (storage && url.startsWith(`${storage.url}/storage/v1/object/public/${encodeURIComponent(STORAGE_BUCKET)}/`)) {
+    const prefix = `${storage.url}/storage/v1/object/public/${encodeURIComponent(STORAGE_BUCKET)}/`;
+    const objectPath = url.slice(prefix.length).split("?")[0].split("/").map(decodeURIComponent).join("/");
+    const response = await fetch(`${storage.url}/storage/v1/object/${encodeURIComponent(STORAGE_BUCKET)}`, {
+      method: "DELETE",
+      headers: {
+        apikey: storage.key,
+        Authorization: `Bearer ${storage.key}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prefixes: [objectPath] }),
+    });
+    if (!response.ok) throw new Error("Supabase Storage no pudo borrar la imagen.");
+    return;
+  }
+
 }
