@@ -4,9 +4,10 @@ import path from "node:path";
 
 const esBuildProduccion = process.env.NEXT_PHASE === "phase-production-build"
   || process.argv.some((argumento) => argumento === "build" || argumento === "start");
+const localAppData = process.env.LOCALAPPDATA;
 const usaRutaLocalDeWindows = esBuildProduccion
   && process.platform === "win32"
-  && Boolean(process.env.LOCALAPPDATA)
+  && Boolean(localAppData)
   && !process.env.NEXT_DIST_DIR;
 const directorioPredeterminado = esBuildProduccion
   ? usaRutaLocalDeWindows ? ".glasskin-build-output" : ".next"
@@ -20,9 +21,9 @@ let directorioDeSalida = process.env.VERCEL
 // La salida de desarrollo queda dentro del proyecto para que Node resuelva los
 // paquetes externos desde node_modules. La compilación de producción usa una
 // caché separada de AppData para que OneDrive no gestione sus archivos temporales.
-if (usaRutaLocalDeWindows) {
+if (usaRutaLocalDeWindows && localAppData) {
   try {
-    const baseLocal = path.join(process.env.LOCALAPPDATA, "Glasskin");
+    const baseLocal = path.join(localAppData, "Glasskin");
     const destino = path.join(baseLocal, "build-runtime", "dist");
     const enlace = path.join(process.cwd(), directorioDeSalida);
     mkdirSync(destino, { recursive: true });
