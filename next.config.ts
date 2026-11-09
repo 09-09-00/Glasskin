@@ -11,7 +11,11 @@ const usaRutaLocalDeWindows = esBuildProduccion
 const directorioPredeterminado = esBuildProduccion
   ? usaRutaLocalDeWindows ? ".glasskin-build-output" : ".next"
   : ".glasskin-runtime";
-let directorioDeSalida = process.env.NEXT_DIST_DIR || directorioPredeterminado;
+// Vercel inspecciona específicamente .next al finalizar la compilación.
+// Fuerza esa ruta allí, incluso si quedó una variable NEXT_DIST_DIR antigua.
+let directorioDeSalida = process.env.VERCEL
+  ? ".next"
+  : process.env.NEXT_DIST_DIR || directorioPredeterminado;
 
 // La salida de desarrollo queda dentro del proyecto para que Node resuelva los
 // paquetes externos desde node_modules. La compilación de producción usa una
