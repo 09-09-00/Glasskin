@@ -11,6 +11,8 @@ import { TarjetaProducto } from "@/components/TarjetaProducto";
 import { TIENDA } from "@/lib/config";
 import { obtenerTasaServer } from "@/lib/format";
 import { ImagenProducto } from "@/components/ImagenProducto";
+import { traducir, traducirCategoria } from "@/lib/idioma";
+import { obtenerIdiomaServer } from "@/lib/idioma-server";
 
 interface Props {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
@@ -52,6 +54,8 @@ export async function generateMetadata({ searchParams }: Props): Promise<import(
 }
 
 export default async function Catalogo({ searchParams }: Props) {
+  const idioma = await obtenerIdiomaServer();
+  const t = (clave: string) => traducir(idioma, clave);
   const params = await searchParams;
   const q = primerValor(params.q);
   const presupuesto = extraerPresupuestoConsulta(q);
@@ -101,13 +105,13 @@ export default async function Catalogo({ searchParams }: Props) {
         <div className="absolute inset-y-0 right-0 hidden w-2/5 border-l border-white/50 bg-[#e8f0e8] lg:block" />
         {productos[0] && <ImagenProducto src={imagenPrincipalProducto(productos[0]).url} alt="" blurDataURL={imagenPrincipalProducto(productos[0]).blurDataUrl} width={220} height={220} className="absolute top-1/2 right-[8%] hidden h-48 w-44 -translate-y-1/2 object-contain lg:block" />}
         <div className="relative">
-        <p className="eyebrow text-[#3f806e]">Selección Glasskin</p>
+        <p className="eyebrow text-[#3f806e]">{t("catalog.selection")}</p>
         <h1 className="mt-2 max-w-3xl font-display text-4xl font-semibold text-[#203128] sm:text-6xl">
-          {filtros.q ? `Resultados para “${filtros.q}”` : nombreCategoria ?? nombreMarca ?? "Todo el catálogo"}
+          {filtros.q ? `${idioma === "en" ? "Results for" : "Resultados para"} “${filtros.q}”` : nombreCategoria ? traducirCategoria(idioma, nombreCategoria) : nombreMarca ?? t("catalog.all")}
         </h1>
         <p className="mt-3 text-sm text-stone-600">
-          {productos.length} producto{productos.length === 1 ? "" : "s"}
-          {hayFiltros ? " con tus filtros aplicados" : " disponibles"}
+          {productos.length} {idioma === "en" ? (productos.length === 1 ? "product" : "products") : (productos.length === 1 ? "producto" : "productos")}
+          {hayFiltros ? ` ${t("catalog.filtered")}` : ` ${t("catalog.available")}`}
           {presupuesto && <span className="ml-2 font-semibold text-[#315141]">· Dentro de tu presupuesto ({presupuesto.moneda === "PYG" ? "Gs. " : "USD "}{presupuesto.importe.toLocaleString("es-PY")})</span>}
         </p></div>
       </header>
@@ -115,7 +119,7 @@ export default async function Catalogo({ searchParams }: Props) {
       <div className="grid gap-8 lg:grid-cols-[250px_1fr]">
         {/* Filtros (con Suspense por useSearchParams) */}
         <aside>
-          <Suspense fallback={<div className="text-sm text-stone-400">Cargando filtros...</div>}>
+          <Suspense fallback={<div className="text-sm text-stone-400">{t("catalog.filtersLoading")}</div>}>
             <FiltrosCatalogo marcas={marcas} categorias={categorias} />
           </Suspense>
         </aside>
@@ -125,9 +129,9 @@ export default async function Catalogo({ searchParams }: Props) {
           {productos.length === 0 ? (
             <div className="rounded-[28px] border border-dashed border-[#203128]/20 bg-white p-12 text-center">
               <span className="text-4xl">🔍</span>
-              <p className="mt-4 font-semibold text-stone-900">No encontramos productos</p>
+              <p className="mt-4 font-semibold text-stone-900">{t("catalog.emptyTitle")}</p>
               <p className="mt-1 text-sm text-stone-500">
-                Prueba quitando algunos filtros o buscando otro término.
+                {t("catalog.emptyText")}
               </p>
             </div>
           ) : (
@@ -159,10 +163,10 @@ export default async function Catalogo({ searchParams }: Props) {
 
       {relacionados.length > 0 && (
         <section className="mt-20 border-t border-[#203128]/10 pt-12">
-          <p className="eyebrow text-[#3f806e]">Descubrí alternativas</p>
+          <p className="eyebrow text-[#3f806e]">{t("catalog.alternatives")}</p>
           <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
-            <h2 className="font-display text-3xl font-semibold sm:text-4xl">Relacionado con tu búsqueda</h2>
-            <Link href="/ia" className="text-sm font-bold text-[#3f806e] hover:underline">Pedir una recomendación a Skin AI →</Link>
+            <h2 className="font-display text-3xl font-semibold sm:text-4xl">{t("catalog.related")}</h2>
+            <Link href="/ia" className="text-sm font-bold text-[#3f806e] hover:underline">{t("catalog.askAi")}</Link>
           </div>
           <p className="mt-2 max-w-2xl text-sm text-stone-500">Opciones de la misma categoría, marca o necesidad de piel que el resultado más relevante.</p>
           <div className="mt-7 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">

@@ -9,6 +9,8 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { TIPOS_PIEL, PREOCUPACIONES } from "@/lib/constantes";
+import { useIdioma } from "@/lib/idioma-provider";
+import { traducirCategoria } from "@/lib/idioma";
 
 interface Props {
   marcas: { slug: string; nombre: string }[];
@@ -16,6 +18,7 @@ interface Props {
 }
 
 export function FiltrosCatalogo({ marcas, categorias }: Props) {
+  const { idioma, t } = useIdioma();
   const router = useRouter();
   const searchParams = useSearchParams();
   const [abierto, setAbierto] = useState(false);
@@ -46,31 +49,31 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
         onClick={() => setAbierto(!abierto)}
         className="mb-3 w-full rounded-xl border border-[#203128]/15 bg-white px-4 py-2.5 text-sm font-semibold text-stone-700 lg:hidden"
       >
-        {abierto ? "✕ Ocultar filtros" : "☰ Mostrar filtros"}
+        {abierto ? t("filters.toggleHide") : t("filters.toggleShow")}
       </button>
 
       <div className={`${abierto ? "block" : "hidden"} space-y-5 rounded-[24px] border border-[#203128]/10 bg-white p-5 lg:sticky lg:top-28 lg:block`}>
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-bold text-stone-900">Filtros</h2>
+          <h2 className="text-sm font-bold text-stone-900">{t("filters.title")}</h2>
           <button
             type="button"
             onClick={limpiar}
             className="text-xs font-bold text-[#3f806e] hover:underline"
           >
-            Limpiar todo
+            {t("filters.clear")}
           </button>
         </div>
 
         {/* Búsqueda por texto */}
         <div>
           <label className="mb-1 block text-xs font-semibold text-stone-500" htmlFor="filtro-q">
-            Buscar
+            {t("filters.search")}
           </label>
           <input
             id="filtro-q"
             type="search"
             defaultValue={searchParams.get("q") ?? ""}
-            placeholder="Producto, necesidad o ingrediente…"
+            placeholder={t("filters.searchPlaceholder")}
             className={claseSelect}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -83,13 +86,13 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
               }
             }}
           />
-          <p className="mt-1.5 text-[11px] leading-4 text-stone-400">Prueba: “piel sensible con manchas” o el nombre de un ingrediente.</p>
+          <p className="mt-1.5 text-[11px] leading-4 text-stone-400">{t("filters.searchHint")}</p>
         </div>
 
         {/* Marca */}
         <div>
           <label className="mb-1 block text-xs font-semibold text-stone-500" htmlFor="filtro-marca">
-            Marca
+            {t("filters.brand")}
           </label>
           <select
             id="filtro-marca"
@@ -97,7 +100,7 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
             onChange={(e) => actualizar("marca", e.target.value)}
             className={claseSelect}
           >
-            <option value="">Todas las marcas</option>
+            <option value="">{t("filters.allBrands")}</option>
             {marcas.map((m) => (
               <option key={m.slug} value={m.slug}>{m.nombre}</option>
             ))}
@@ -107,7 +110,7 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
         {/* Categoría */}
         <div>
           <label className="mb-1 block text-xs font-semibold text-stone-500" htmlFor="filtro-categoria">
-            Categoría
+            {t("filters.category")}
           </label>
           <select
             id="filtro-categoria"
@@ -115,9 +118,9 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
             onChange={(e) => actualizar("categoria", e.target.value)}
             className={claseSelect}
           >
-            <option value="">Todas las categorías</option>
+            <option value="">{t("filters.allCategories")}</option>
             {categorias.map((c) => (
-              <option key={c.slug} value={c.slug}>{`${c.icono ?? ""} ${c.nombre}`.trim()}</option>
+              <option key={c.slug} value={c.slug}>{`${c.icono ?? ""} ${traducirCategoria(idioma, c.nombre)}`.trim()}</option>
             ))}
           </select>
         </div>
@@ -125,7 +128,7 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
         {/* Tipo de piel */}
         <div>
           <label className="mb-1 block text-xs font-semibold text-stone-500" htmlFor="filtro-piel">
-            Tipo de piel
+            {t("filters.skinType")}
           </label>
           <select
             id="filtro-piel"
@@ -133,9 +136,9 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
             onChange={(e) => actualizar("piel", e.target.value)}
             className={claseSelect}
           >
-            <option value="">Cualquier tipo</option>
+            <option value="">{t("filters.anySkin")}</option>
             {TIPOS_PIEL.map((t) => (
-              <option key={t.valor} value={t.valor}>{t.etiqueta}</option>
+              <option key={t.valor} value={t.valor}>{idioma === "en" ? ({ seca: "Dry", grasa: "Oily", mixta: "Combination", sensible: "Sensitive", normal: "Normal" }[t.valor] ?? t.etiqueta) : t.etiqueta}</option>
             ))}
           </select>
         </div>
@@ -143,7 +146,7 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
         {/* Preocupación */}
         <div>
           <label className="mb-1 block text-xs font-semibold text-stone-500" htmlFor="filtro-preocupacion">
-            Preocupación
+            {t("filters.concern")}
           </label>
           <select
             id="filtro-preocupacion"
@@ -151,9 +154,9 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
             onChange={(e) => actualizar("preocupacion", e.target.value)}
             className={claseSelect}
           >
-            <option value="">Todas</option>
+            <option value="">{t("filters.allConcerns")}</option>
             {PREOCUPACIONES.map((p) => (
-              <option key={p.valor} value={p.valor}>{p.etiqueta}</option>
+              <option key={p.valor} value={p.valor}>{idioma === "en" ? ({ acne: "Acne", manchas: "Dark spots", arrugas: "Fine lines", poros: "Pores", rojez: "Redness", deshidratacion: "Dehydration" }[p.valor] ?? p.etiqueta) : p.etiqueta}</option>
             ))}
           </select>
         </div>
@@ -161,7 +164,7 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
         {/* Precio máximo */}
         <div>
           <label className="mb-1 block text-xs font-semibold text-stone-500" htmlFor="filtro-precio">
-            Precio máximo
+            {t("filters.maxPrice")}
           </label>
           <div className="flex gap-2">
             <input
@@ -171,7 +174,7 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
               step="1"
               value={precioMax}
               onChange={(e) => setPrecioMax(e.target.value)}
-              placeholder="Ej: 25"
+              placeholder={t("filters.example")}
               className={claseSelect}
               onKeyDown={(e) => {
                 if (e.key === "Enter") actualizar("precioMax", precioMax);
@@ -182,7 +185,7 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
               onClick={() => actualizar("precioMax", precioMax)}
               className="rounded-xl bg-[#203128] px-4 text-sm font-semibold text-white transition hover:bg-[#3f806e]"
             >
-              Ir
+              {t("filters.go")}
             </button>
           </div>
         </div>
@@ -190,7 +193,7 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
         {/* Orden */}
         <div>
           <label className="mb-1 block text-xs font-semibold text-stone-500" htmlFor="filtro-orden">
-            Ordenar por
+            {t("filters.sortBy")}
           </label>
           <select
             id="filtro-orden"
@@ -198,10 +201,10 @@ export function FiltrosCatalogo({ marcas, categorias }: Props) {
             onChange={(e) => actualizar("orden", e.target.value)}
             className={claseSelect}
           >
-            <option value="">{searchParams.get("q") ? "Más relevantes" : "Más recientes"}</option>
-            <option value="precio-asc">Precio: menor a mayor</option>
-            <option value="precio-desc">Precio: mayor a menor</option>
-            <option value="nombre">Nombre (A-Z)</option>
+            <option value="">{searchParams.get("q") ? t("filters.relevance") : t("filters.newest")}</option>
+            <option value="precio-asc">{t("filters.lowToHigh")}</option>
+            <option value="precio-desc">{t("filters.highToLow")}</option>
+            <option value="nombre">{t("filters.nameAZ")}</option>
           </select>
         </div>
       </div>

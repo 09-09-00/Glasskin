@@ -12,6 +12,7 @@ import { inferirCategoriaConsulta } from "@/lib/ia/fallback";
 
 const BodySchema = z.object({
   messages: z.array(z.object({ role: z.enum(["user", "assistant"]), content: z.string().trim().min(1).max(1000) })).min(1).max(8),
+  language: z.enum(["es", "en"]).optional().default("es"),
 });
 
 const productosSelect = {
@@ -35,6 +36,7 @@ export async function POST(request: NextRequest) {
     const parsed = BodySchema.safeParse(await request.json());
     if (!parsed.success) return NextResponse.json({ error: "Escribí una consulta breve para poder ayudarte." }, { status: 400 });
 
+    const idioma = parsed.data.language;
     const ultimoMensaje = [...parsed.data.messages].reverse().find((message) => message.role === "user")?.content ?? "";
     const mensajesUsuario = parsed.data.messages.filter((message) => message.role === "user");
     const preguntaDeSeguimiento = /\b(y ese|y esa|y eso|y el precio|cuanto cuesta|cuanto sale|ingredientes|como se usa|y para|y con|y si)\b/i.test(ultimoMensaje.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase());
@@ -48,7 +50,7 @@ export async function POST(request: NextRequest) {
       const accountId = await verificarSesionCliente(request.cookies.get(CUSTOMER_COOKIE)?.value);
       if (!accountId) {
         return NextResponse.json({
-          respuesta: "Para consultar un pedido necesito proteger tus datos. Inicia sesión en tu cuenta Glasskin y vuelve a preguntarme; allí también verás el seguimiento completo.",
+          respuesta: idioma === "en" ? "To protect your information, please sign in to your Glasskin account before checking an order. You can also follow it there." : "Para consultar un pedido necesito proteger tus datos. Inicia sesión en tu cuenta Glasskin y vuelve a preguntarme; allí también verás el seguimiento completo.",
           enlaceCuenta: true,
           productos: [],
         });
@@ -65,21 +67,21 @@ export async function POST(request: NextRequest) {
         },
       });
       if (!pedidos.length) {
-        return NextResponse.json({ respuesta: "No encuentro pedidos vinculados a esta cuenta. Puedes revisar tu perfil o escribirnos por WhatsApp si hiciste la compra como invitado.", enlaceCuenta: true, productos: [] });
+        return NextResponse.json({ respuesta: idioma === "en" ? "I couldn't find orders linked to this account. Check My Account or contact the store if you checked out as a guest." : "No encuentro pedidos vinculados a esta cuenta. Puedes revisar tu perfil o escribirnos por WhatsApp si hiciste la compra como invitado.", enlaceCuenta: true, productos: [] });
       }
       const detalle = pedidos.map((pedido) => {
         const fecha = new Intl.DateTimeFormat("es-PY", { dateStyle: "medium", timeZone: "America/Asuncion" }).format(pedido.createdAt);
         const articulos = pedido.items.map((item) => `${item.cantidad} × ${item.producto.nombre}`).join(", ");
         return `• ${pedido.numero} — ${etiquetaDe(ESTADOS_PEDIDO, pedido.estado)} (${fecha})${articulos ? `\n  ${articulos}` : ""}`;
       }).join("\n");
-      return NextResponse.json({ respuesta: `Estos son tus pedidos más recientes:\n${detalle}\n\nEl estado y los detalles también están en Mi perfil.`, enlaceCuenta: true, productos: [] });
+      return NextResponse.json({ respuesta: idioma === "en" ? `Here are your most recent orders:\n${detalle}\n\nYou can also view order status and details in My Account.` : `Estos son tus pedidos más recientes:\n${detalle}\n\nEl estado y los detalles también están en Mi perfil.`, enlaceCuenta: true, productos: [] });
     }
 
     // La respuesta sobre pagos es fija y no necesita consultar productos ni
     // datos del cliente. Responder antes evita demoras cuando la base despierta.
     const consultaNormalizada = ultimoMensaje.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     if (/\b(pago|pagar|pagos|tarjeta|transferencia|efectivo|cuotas|cobran)\b/.test(consultaNormalizada)) {
-      return NextResponse.json(responderSoporteLocal(ultimoMensaje, []));
+      return NextResponse.json(responderSoporteLocal(ultimoMensaje, [], undefined, {}, idioma));
     }
 
     const accountId = await verificarSesionCliente(request.cookies.get(CUSTOMER_COOKIE)?.value);
@@ -146,7 +148,7 @@ export async function POST(request: NextRequest) {
       ? ` Tipo de piel ${perfil.tipoPiel}; prioridades ${leerListaJson(perfil.preocupacionesPiel).join(", ") || "ninguna indicada"}.`
       : "";
     if (!iaExternaConfigurada()) {
-      const resultado = responderSoporteLocal(`${contextoConversacion}${preferenciasConsentidas}`, productos, configuracionEntrega, opcionesBusqueda);
+      const resultado = responderSoporteLocal(`${contextoConversacion}${preferenciasConsentidas}`, productos, configuracionEntrega, opcionesBusqueda, idioma);
       return NextResponse.json(resultado);
     }
 
@@ -178,7 +180,7 @@ export async function POST(request: NextRequest) {
         messages: [
           {
             role: "system",
-            content: `Sos el asistente de atención de Glasskin, tienda de skincare en Paraguay. Respondé en español natural, amable y claro, con información útil (hasta 120 palabras). Puedes responder sobre catálogo, pedidos autenticados, precios, checkout, envíos y uso general de cosméticos. Compara productos solo con ingredientes, uso, tipos de piel y necesidades que aparezcan en sus fichas. No inventes beneficios ni concluyas cuál funciona mejor sin evidencia. Delivery: ${configuracionEntrega.envioGratisDesdeUsd <= 0 ? "gratis" : `gratis desde USD ${configuracionEntrega.envioGratisDesdeUsd.toFixed(2)}, costo USD ${configuracionEntrega.costoDeliveryUsd.toFixed(2)} debajo de ese umbral`}; el checkout informa una estimación de 1 a 3 días basada en la distancia aproximada. Retiro ${configuracionEntrega.retiroConfigurado ? `habilitado en ${configuracionEntrega.direccionRetiro}` : "no habilitado: falta configurar una dirección completa"}. El checkout todavía no procesa pagos reales en línea. No prometas una hora exacta ni un plazo mayor a tres días. Los horarios y la política de devoluciones no están configurados: dilo con transparencia e indica que puede usar el botón de atención humana para que el equipo revise su consulta. Nunca solicites datos de tarjeta. No inventes datos de pedidos, precios, stock, políticas, contacto ni efectos clínicos. Para recomendaciones, elige únicamente IDs del catálogo disponible y devuelve como máximo 3. No diagnostiques ni prometas resultados; ante una reacción intensa o persistente recomienda suspender el producto y consultar dermatología. Conserva el contexto de los mensajes recientes. Devuelve SOLO JSON: {"respuesta":"texto","productoIds":[1,2]}.${preferenciasConsentidas ? ` Contexto de personalización consentido por el cliente: ${preferenciasConsentidas} Úsalo solo para orientar recomendaciones.` : ""} Catálogo actual disponible: ${JSON.stringify(catalogo)}`,
+            content: `You are Glasskin's skincare store assistant in Paraguay. Respond in ${idioma === "en" ? "natural, clear English" : "natural, clear Spanish"}, warmly, with useful information (up to 120 words). You may answer questions about the catalog, authenticated orders, prices, checkout, delivery, and general cosmetic use. Compare products only using ingredients, directions, skin types, and concerns in their product records. Do not invent benefits or claim a product works better without evidence. Delivery: ${configuracionEntrega.envioGratisDesdeUsd <= 0 ? "free" : `free over USD ${configuracionEntrega.envioGratisDesdeUsd.toFixed(2)}, USD ${configuracionEntrega.costoDeliveryUsd.toFixed(2)} below that threshold`}; checkout estimates 1 to 3 days based on approximate distance. Pickup is ${configuracionEntrega.retiroConfigurado ? `available at ${configuracionEntrega.direccionRetiro}` : "not available because a complete address is not configured"}. Checkout does not process real online payments. Never promise an exact time or delivery over three days. Store hours and return policy are not configured: state this clearly and offer the human support contact. Never request card data. Never invent order, price, stock, policy, contact, or clinical effect information. For recommendations, use only available catalog product IDs, up to 3. Do not diagnose or promise results; if a strong or persistent reaction occurs, advise stopping use and consulting a dermatologist. Keep recent conversation context. Return ONLY JSON: {"respuesta":"text","productoIds":[1,2]}.${preferenciasConsentidas ? ` Customer-consented personalization context: ${preferenciasConsentidas} Use it only to guide recommendations.` : ""} Current catalog: ${JSON.stringify(catalogo)}`,
           },
           ...parsed.data.messages.slice(-6),
         ],
@@ -194,7 +196,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ respuesta, productos: productosRespuesta });
     } catch (errorIA) {
       console.error("Asistente Glasskin: se usará respuesta local porque la IA no respondió:", errorIA);
-      return NextResponse.json(responderSoporteLocal(`${contextoConversacion}${preferenciasConsentidas}`, productos, configuracionEntrega, opcionesBusqueda));
+      return NextResponse.json(responderSoporteLocal(`${contextoConversacion}${preferenciasConsentidas}`, productos, configuracionEntrega, opcionesBusqueda, idioma));
     }
   } catch (error) {
     console.error("POST /api/soporte/chat error:", error);

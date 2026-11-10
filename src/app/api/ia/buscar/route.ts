@@ -14,6 +14,7 @@ import { z } from "zod";
 
 const BodySchema = z.object({
   descripcion: z.string().min(10).max(1000),
+  language: z.enum(["es", "en"]).optional().default("es"),
 });
 
 export async function POST(req: NextRequest) {
@@ -24,7 +25,7 @@ export async function POST(req: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json({ error: "Descripción requerida (mín 10 caracteres)" }, { status: 400 });
     }
-    const { descripcion } = parsed.data;
+    const { descripcion, language } = parsed.data;
 
     // 1. Obtener catálogo activo (solo campos necesarios para el prompt)
     const productos = await prisma.product.findMany({
@@ -54,7 +55,16 @@ export async function POST(req: NextRequest) {
       (precioMaxUSD === undefined || producto.precio <= precioMaxUSD)
     );
     const opciones = { categoria, precioMaxUSD };
-    respuestaLocal = () => NextResponse.json({ ok: true, ...buscarProductosLocal(descripcion, productos, opciones), modo: "local-respaldo" });
+    respuestaLocal = () => {
+      const resultado = buscarProductosLocal(descripcion, productos, opciones);
+      if (language === "es") return NextResponse.json({ ok: true, ...resultado, modo: "local-respaldo" });
+      return NextResponse.json({ ok: true, ...resultado, explicacion: resultado.productos.length
+        ? "I checked the available catalog and selected products that best match your description."
+        : "I could not find an exact match in the current catalog. Try a different skin concern or budget.",
+        productos: resultado.productos.map((producto) => ({ ...producto, motivo: "Selected based on your needs and the current product information." })),
+        avisos: ["These suggestions use products currently listed in the Glasskin catalog.", "This information does not replace professional medical advice."],
+        modo: "local-respaldo" });
+    };
 
     if (!iaExternaConfigurada()) {
       return respuestaLocal();
@@ -85,10 +95,10 @@ export async function POST(req: NextRequest) {
       max_tokens: 1500,
       response_format: { type: "json_object" },
       messages: [
-        { role: "system", content: PROMPT_BUSQUEDA_INTELIGENTE },
+        { role: "system", content: `${PROMPT_BUSQUEDA_INTELIGENTE}\n\nWrite all customer-facing text fields in ${language === "en" ? "English" : "Spanish"}. Keep product names, brands, ingredients, and product catalog facts exactly as stored.` },
         {
           role: "user",
-          content: `CATÁLOGO DISPONIBLE:\n${catalogoTexto}\n\nUSUARIO: "${descripcion}"`,
+          content: `${language === "en" ? "AVAILABLE CATALOG" : "CATÁLOGO DISPONIBLE"}:\n${catalogoTexto}\n\n${language === "en" ? "CUSTOMER" : "USUARIO"}: "${descripcion}"`,
         },
       ],
     });
@@ -127,7 +137,7 @@ export async function POST(req: NextRequest) {
       ok: true,
       productos: resultado,
       explicacion: parseado.datos.explicacion,
-      avisos: [...new Set([...parseado.datos.avisos, "Solo se recomiendan productos del catálogo actual."])],
+      avisos: [...new Set([...parseado.datos.avisos, language === "en" ? "Only products from the current catalog are recommended." : "Solo se recomiendan productos del catálogo actual."])],
     });
   } catch (e) {
     console.error("POST /api/ia/buscar error:", e);

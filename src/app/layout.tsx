@@ -10,6 +10,8 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { TIENDA } from "@/lib/config";
 import { AsistenteContacto } from "@/components/AsistenteContacto";
+import { IdiomaProvider } from "@/lib/idioma-provider";
+import { obtenerIdiomaServer } from "@/lib/idioma-server";
 
 export const metadata: Metadata = {
   title: {
@@ -26,22 +28,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const idioma = await obtenerIdiomaServer();
   return (
-    <html lang="es">
+    <html lang={idioma}>
       <body className="font-sans antialiased">
         <CarritoProvider>
           <MonedaProvider>
-            <WishlistProvider>
-              <Header />
-              <main className="min-h-[70vh]">{children}</main>
-              <Footer />
-              <AsistenteContacto />
-            </WishlistProvider>
+            <IdiomaProvider idioma={idioma}>
+              <WishlistProvider>
+                <Header />
+                <main className="min-h-[70vh]">{children}</main>
+                <Footer />
+                <AsistenteContacto />
+              </WishlistProvider>
+            </IdiomaProvider>
           </MonedaProvider>
         </CarritoProvider>
       </body>

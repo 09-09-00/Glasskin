@@ -15,6 +15,7 @@ const BodySchema = z.object({
   tipoPiel: z.enum(["seca", "grasa", "mixta", "sensible", "normal"]),
   presupuestoMax: z.number().positive().max(1000),
   preocupaciones: z.array(z.string()).optional().default([]),
+  language: z.enum(["es", "en"]).optional().default("es"),
 });
 
 export async function POST(req: NextRequest) {
@@ -28,7 +29,7 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-    const { tipoPiel, presupuestoMax, preocupaciones } = parsed.data;
+    const { tipoPiel, presupuestoMax, preocupaciones, language } = parsed.data;
 
     // 1. Filtrar catálogo por tipo de piel y preocupaciones
     const where: Record<string, unknown> = { activo: true, tipoPiel: { contains: `"${tipoPiel}"` } };
@@ -61,7 +62,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    respuestaLocal = () => NextResponse.json({ ok: true, ...crearRutinaPresupuestoLocal(productos, presupuestoMax), modo: "local-respaldo" });
+    respuestaLocal = () => {
+      const resultado = crearRutinaPresupuestoLocal(productos, presupuestoMax);
+      return NextResponse.json({ ok: true, ...resultado,
+        ...(language === "en" ? { productos: resultado.productos.map((producto) => ({ ...producto, motivo: "Selected as part of a balanced skincare routine within your budget." })), avisos: ["Routine suggestions use products currently listed in the Glasskin catalog.", "The total is calculated from current catalog prices.", "This information does not replace professional medical advice."] } : {}),
+        modo: "local-respaldo" });
+    };
 
     if (!iaExternaConfigurada()) {
       return respuestaLocal();
@@ -91,10 +97,10 @@ export async function POST(req: NextRequest) {
       max_tokens: 2000,
       response_format: { type: "json_object" },
       messages: [
-        { role: "system", content: PROMPT_RUTINA_PRESUPUESTO },
+        { role: "system", content: `${PROMPT_RUTINA_PRESUPUESTO}\n\nWrite all customer-facing text fields in ${language === "en" ? "English" : "Spanish"}. Keep product names, brands, ingredients, and product catalog facts exactly as stored.` },
         {
           role: "user",
-          content: `TIPO DE PIEL: ${tipoPiel}\nPRESUPUESTO MÁXIMO: $${presupuestoMax}\nPREOCUPACIONES: ${preocupaciones.join(", ") || "ninguna"}\n\nCATÁLOGO FILTRADO:\n${catalogoTexto}`,
+          content: `${language === "en" ? "SKIN TYPE" : "TIPO DE PIEL"}: ${tipoPiel}\n${language === "en" ? "MAXIMUM BUDGET" : "PRESUPUESTO MÁXIMO"}: $${presupuestoMax}\n${language === "en" ? "CONCERNS" : "PREOCUPACIONES"}: ${preocupaciones.join(", ") || (language === "en" ? "none" : "ninguna")}\n\n${language === "en" ? "FILTERED CATALOG" : "CATÁLOGO FILTRADO"}:\n${catalogoTexto}`,
         },
       ],
     });
@@ -172,8 +178,8 @@ export async function POST(req: NextRequest) {
       avisos: [
         ...new Set([
           ...parseado.datos.avisos,
-          "El total se calcula en código, nunca por el modelo.",
-          `Sobran $${sobra.toFixed(2)} del presupuesto.`,
+          language === "en" ? "The total is calculated from catalog prices, not by the AI model." : "El total se calcula en código, nunca por el modelo.",
+          language === "en" ? `$${sobra.toFixed(2)} remains in your budget.` : `Sobran $${sobra.toFixed(2)} del presupuesto.`,
         ]),
       ],
     });

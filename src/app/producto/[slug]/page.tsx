@@ -14,6 +14,8 @@ import { TarjetaProducto } from "@/components/TarjetaProducto";
 import { GaleriaProducto } from "@/components/GaleriaProducto";
 import { TIENDA } from "@/lib/config";
 import { ResenasProducto } from "@/components/ResenasProducto";
+import { obtenerIdiomaServer } from "@/lib/idioma-server";
+import { traducir } from "@/lib/idioma";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -51,10 +53,12 @@ export async function generateMetadata({ params }: Props): Promise<import("next"
 
 export default async function DetalleProducto({ params }: Props) {
   const { slug } = await params;
-  const [producto, moneda] = await Promise.all([
+  const [producto, moneda, idioma] = await Promise.all([
     obtenerProductoPorSlug(slug),
     obtenerMonedaServer(),
+    obtenerIdiomaServer(),
   ]);
+  const t = (clave: string) => traducir(idioma, clave);
 
   // Si el producto no existe, página 404
   if (!producto || !producto.activo) notFound();
@@ -82,9 +86,9 @@ export default async function DetalleProducto({ params }: Props) {
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
       {/* Migas de pan */}
       <nav className="mb-6 flex flex-wrap items-center gap-1.5 text-xs text-stone-400">
-        <Link href="/" className="hover:text-[#3f806e]">Inicio</Link>
+        <Link href="/" className="hover:text-[#3f806e]">{t("product.home")}</Link>
         <span>/</span>
-        <Link href="/catalogo" className="hover:text-[#3f806e]">Catálogo</Link>
+        <Link href="/catalogo" className="hover:text-[#3f806e]">{t("product.catalog")}</Link>
         <span>/</span>
         <Link href={`/catalogo?categoria=${producto.category.slug}`} className="hover:text-[#3f806e]">
           {producto.category.nombre}
@@ -110,15 +114,15 @@ export default async function DetalleProducto({ params }: Props) {
           <h1 className="mt-2 font-display text-4xl font-bold leading-tight text-[#203128] sm:text-5xl">
             {producto.nombre}
           </h1>
-          {resumenReseñas._count._all > 0 && <a href="#resenas" className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[#315141] hover:underline"><span className="text-amber-600">★ {resumenReseñas._avg.rating?.toFixed(1)}</span><span>({resumenReseñas._count._all} reseñas verificadas)</span></a>}
+          {resumenReseñas._count._all > 0 && <a href="#resenas" className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[#315141] hover:underline"><span className="text-amber-600">★ {resumenReseñas._avg.rating?.toFixed(1)}</span><span>({resumenReseñas._count._all} {t("product.verifiedReviews")})</span></a>}
           <p className="mt-3 text-3xl font-bold text-stone-900">{precioFormateado}</p>
 
           {/* Estado del stock */}
           <p className="mt-2 text-sm">
             {producto.stock > 0 ? (
-              <span className="font-semibold text-emerald-600">✓ En stock</span>
+              <span className="font-semibold text-emerald-600">✓ {t("product.inStock")}</span>
             ) : (
-              <span className="font-semibold text-stone-400">✕ Agotado</span>
+              <span className="font-semibold text-stone-400">✕ {t("product.outOfStock")}</span>
             )}
           </p>
 
@@ -126,7 +130,7 @@ export default async function DetalleProducto({ params }: Props) {
 
           {/* Beneficios */}
           <div className="mt-6 rounded-2xl border border-[#3f806e]/10 bg-[#fbf8f1] p-5">
-            <p className="text-sm font-bold text-[#385144]">Beneficios principales</p>
+            <p className="text-sm font-bold text-[#385144]">{t("product.benefits")}</p>
             <p className="mt-2 text-sm leading-relaxed text-[#547565]">
               {producto.descripcion.slice(0, 300)}{producto.descripcion.length > 300 ? "..." : ""}
             </p>
@@ -149,14 +153,14 @@ export default async function DetalleProducto({ params }: Props) {
 
           {/* Modo de uso */}
           <div className="mt-6 rounded-2xl bg-[#fbf8f1] p-5">
-            <p className="text-sm font-bold text-stone-900">Modo de uso</p>
+            <p className="text-sm font-bold text-stone-900">{t("product.howToUse")}</p>
             <p className="mt-2 text-sm leading-relaxed text-stone-600">{producto.modoUso}</p>
           </div>
 
           {/* Ingredientes clave */}
           {producto.ingredientes.length > 0 && (
             <div className="mt-6">
-              <p className="text-sm font-bold text-stone-900">Ingredientes clave</p>
+              <p className="text-sm font-bold text-stone-900">{t("product.keyIngredients")}</p>
               <div className="mt-2 flex flex-wrap gap-2">
                 {producto.ingredientes.map((relacion) => (
                   <span
@@ -174,7 +178,7 @@ export default async function DetalleProducto({ params }: Props) {
           {/* Tipos de piel */}
           {tiposPiel.length > 0 && (
             <div className="mt-5">
-              <p className="text-sm font-bold text-stone-900">Apta para</p>
+              <p className="text-sm font-bold text-stone-900">{t("product.suitableFor")}</p>
               <div className="mt-2 flex flex-wrap gap-2">
                 {tiposPiel.map((tipo) => (
                   <span
@@ -191,7 +195,7 @@ export default async function DetalleProducto({ params }: Props) {
           {/* Preocupaciones que trata */}
           {preocupaciones.length > 0 && (
             <div className="mt-5">
-              <p className="text-sm font-bold text-stone-900">Trata</p>
+              <p className="text-sm font-bold text-stone-900">{t("product.treats")}</p>
               <div className="mt-2 flex flex-wrap gap-2">
                 {preocupaciones.map((p) => (
                   <Link
@@ -210,19 +214,19 @@ export default async function DetalleProducto({ params }: Props) {
 
           {/* Precauciones */}
           <div className="mt-6 rounded-2xl bg-amber-50/50 p-4">
-            <p className="text-sm font-bold text-amber-800">⚠️ Precauciones</p>
+            <p className="text-sm font-bold text-amber-800">⚠️ {t("product.precautions")}</p>
             <ul className="mt-2 space-y-1 text-sm text-amber-700">
-              <li>• Uso externo únicamente. Evitar contacto con los ojos.</li>
-              <li>• Si aparece irritación, suspender el uso y consultar a un dermatólogo.</li>
-              <li>• Mantener fuera del alcance de los niños.</li>
-              <li>• Conservar en lugar fresco y seco, alejado de la luz directa.</li>
-              <li>• No sustituye tratamiento médico. Ante condiciones cutáneas graves, consultar a un dermatólogo.</li>
+              <li>• {t("product.externalUse")}</li>
+              <li>• {t("product.stopIrritation")}</li>
+              <li>• {t("product.children")}</li>
+              <li>• {t("product.storage")}</li>
+              <li>• {t("product.medical")}</li>
             </ul>
           </div>
 
           {preocupacionesValores[0] && (
             <Link href={`/consejos#${preocupacionesValores[0]}`} className="mt-4 flex items-center justify-between rounded-2xl border border-[#203128]/10 bg-[#e7f0eb] p-5 transition hover:border-[#3f806e]">
-              <div><p className="text-xs font-bold tracking-wider text-[#3f806e] uppercase">Aprendé antes de combinar</p><p className="mt-1 font-display text-xl font-semibold text-[#203128]">Guía para {preocupaciones[0]?.toLowerCase()}</p></div><span className="grid h-9 w-9 place-items-center rounded-full bg-white">→</span>
+              <div><p className="text-xs font-bold tracking-wider text-[#3f806e] uppercase">{t("product.learnBefore")}</p><p className="mt-1 font-display text-xl font-semibold text-[#203128]">{t("product.guideFor")} {preocupaciones[0]?.toLowerCase()}</p></div><span className="grid h-9 w-9 place-items-center rounded-full bg-white">→</span>
             </Link>
           )}
         </div>
@@ -290,7 +294,7 @@ export default async function DetalleProducto({ params }: Props) {
       {relacionados.length > 0 && (
         <section className="mt-14">
           <h2 className="font-display text-2xl font-bold text-stone-900">
-            Productos relacionados
+            {t("product.related")}
           </h2>
           <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {relacionados.map((relacionado) => {

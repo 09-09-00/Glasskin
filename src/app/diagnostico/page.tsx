@@ -5,17 +5,27 @@ import { useEffect, useState } from "react";
 import { PREOCUPACIONES, TIPOS_PIEL } from "@/lib/constantes";
 import { useFormatearPrecio } from "@/lib/useFormatearPrecio";
 import { ImagenProducto } from "@/components/ImagenProducto";
+import { useIdioma } from "@/lib/idioma-provider";
 
 type Producto = { id: number; slug: string; nombre: string; marca: string; precio: number; imagen?: string | null };
 type Paso = { orden: number; nombre: string; instrucciones: string; producto: Producto | null };
 type Rutina = { manana: Paso[]; noche: Paso[]; consejos: string[]; avisos: string[]; modo?: string };
 
-const descripciones: Record<string, string> = {
-  seca: "Suele sentirse tirante, opaca o con descamación.",
-  grasa: "Presenta brillo frecuente y poros más visibles.",
-  mixta: "Brillo en zona T y mejillas normales o secas.",
-  sensible: "Reacciona con rojez, ardor o picazón fácilmente.",
-  normal: "Se siente equilibrada la mayor parte del día.",
+const clavesDescripcion: Record<string, string> = {
+  seca: "diagnosis.skin.dry",
+  grasa: "diagnosis.skin.oily",
+  mixta: "diagnosis.skin.combination",
+  sensible: "diagnosis.skin.sensitive",
+  normal: "diagnosis.skin.normal",
+};
+
+const clavesPreocupacion: Record<string, string> = {
+  acne: "filters.concern.acne",
+  manchas: "filters.concern.spots",
+  arrugas: "filters.concern.lines",
+  poros: "filters.concern.pores",
+  rojez: "filters.concern.redness",
+  deshidratacion: "filters.concern.dehydration",
 };
 
 export default function DiagnosticoPage() {
@@ -25,6 +35,7 @@ export default function DiagnosticoPage() {
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState("");
   const formatearPrecio = useFormatearPrecio();
+  const { idioma, t } = useIdioma();
 
   useEffect(() => {
     try {
@@ -47,14 +58,14 @@ export default function DiagnosticoPage() {
       const respuesta = await fetch("/api/ia/rutina", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tipoPiel, preocupaciones }),
+        body: JSON.stringify({ tipoPiel, preocupaciones, language: idioma }),
       });
       const datos = await respuesta.json();
-      if (!respuesta.ok) throw new Error(datos.error ?? "No pudimos crear tu rutina");
+      if (!respuesta.ok) throw new Error(idioma === "en" ? t("diagnosis.error") : (datos.error ?? t("diagnosis.error")));
       setRutina(datos);
       setTimeout(() => document.getElementById("mi-rutina")?.scrollIntoView({ behavior: "smooth" }), 50);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Error de conexión");
+      setError(e instanceof Error ? e.message : t("checkout.connectionError"));
     } finally {
       setCargando(false);
     }
@@ -91,39 +102,39 @@ export default function DiagnosticoPage() {
       <section className="border-b border-[#203128]/10 bg-[radial-gradient(circle_at_85%_20%,#e7f0eb_0,transparent_30%),linear-gradient(135deg,#fbf8f1,#fbf8f1_70%)]">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
           <div>
-            <p className="eyebrow text-[#3f806e]">Diagnóstico Glasskin</p>
-            <h1 className="mt-4 font-display text-5xl font-semibold leading-[.95] tracking-tight sm:text-7xl">Una rutina que entiende tu piel.</h1>
-            <p className="mt-6 max-w-xl leading-7 text-stone-600">Elegí cómo se siente tu piel y qué querés mejorar. Glasskin analiza el catálogo disponible, guarda tu perfil en este dispositivo y arma una rutina de mañana y noche.</p>
-            <div className="mt-7 flex flex-wrap gap-2 text-xs font-semibold text-stone-600"><span className="rounded-full bg-white/70 px-4 py-2">✓ Menos de 1 minuto</span><span className="rounded-full bg-white/70 px-4 py-2">✓ Productos reales</span><span className="rounded-full bg-white/70 px-4 py-2">✓ Perfil guardado</span></div>
+            <p className="eyebrow text-[#3f806e]">Glasskin · {t("nav.diagnosis")}</p>
+            <h1 className="mt-4 font-display text-5xl font-semibold leading-[.95] tracking-tight sm:text-7xl">{t("diagnosis.title")}</h1>
+            <p className="mt-6 max-w-xl leading-7 text-stone-600">{t("diagnosis.intro")}</p>
+            <div className="mt-7 flex flex-wrap gap-2 text-xs font-semibold text-stone-600"><span className="rounded-full bg-white/70 px-4 py-2">{t("diagnosis.minute")}</span><span className="rounded-full bg-white/70 px-4 py-2">{t("diagnosis.products")}</span><span className="rounded-full bg-white/70 px-4 py-2">{t("diagnosis.saved")}</span></div>
           </div>
 
           <div className="glass-panel rounded-[34px] p-5 sm:p-8">
-            <div className="flex items-center justify-between"><p className="text-sm font-bold">1. ¿Cómo describís tu piel?</p><span className="text-xs text-stone-400">Elegí una</span></div>
+            <div className="flex items-center justify-between"><p className="text-sm font-bold">{t("diagnosis.describe")}</p><span className="text-xs text-stone-400">{t("diagnosis.chooseOne")}</span></div>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               {TIPOS_PIEL.map((tipo) => (
                 <button key={tipo.valor} type="button" onClick={() => setTipoPiel(tipo.valor)} className={`rounded-2xl border p-4 text-left transition ${tipoPiel === tipo.valor ? "border-[#3f806e] bg-[#e8f0e8] shadow-sm" : "border-[#203128]/10 bg-white/70 hover:border-[#3f806e]/50"}`}>
-                  <span className="font-display text-xl font-semibold">{tipo.etiqueta}</span><span className="mt-1 block text-xs leading-5 text-stone-500">{descripciones[tipo.valor]}</span>
+                  <span className="font-display text-xl font-semibold">{idioma === "en" ? t(`diagnosis.profileTypes.${tipo.valor === "seca" ? "dry" : tipo.valor === "grasa" ? "oily" : tipo.valor === "mixta" ? "combination" : tipo.valor}`) : tipo.etiqueta}</span><span className="mt-1 block text-xs leading-5 text-stone-500">{t(clavesDescripcion[tipo.valor])}</span>
                 </button>
               ))}
             </div>
-            <div className="mt-7 flex items-center justify-between"><p className="text-sm font-bold">2. ¿Qué querés mejorar?</p><span className="text-xs text-stone-400">Hasta 3</span></div>
+            <div className="mt-7 flex items-center justify-between"><p className="text-sm font-bold">{t("diagnosis.improve")}</p><span className="text-xs text-stone-400">{t("diagnosis.upTo3")}</span></div>
             <div className="mt-3 flex flex-wrap gap-2">
-              {PREOCUPACIONES.map((item) => <button key={item.valor} type="button" onClick={() => alternar(item.valor)} className={`rounded-full px-4 py-2 text-sm font-semibold transition ${preocupaciones.includes(item.valor) ? "bg-[#203128] text-white" : "border border-[#203128]/10 bg-white text-stone-600 hover:border-[#3f806e]"}`}>{item.etiqueta}</button>)}
+              {PREOCUPACIONES.map((item) => <button key={item.valor} type="button" onClick={() => alternar(item.valor)} className={`rounded-full px-4 py-2 text-sm font-semibold transition ${preocupaciones.includes(item.valor) ? "bg-[#203128] text-white" : "border border-[#203128]/10 bg-white text-stone-600 hover:border-[#3f806e]"}`}>{t(clavesPreocupacion[item.valor])}</button>)}
             </div>
             {error && <p className="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-700">{error}</p>}
-            <button type="button" onClick={generar} disabled={cargando} className="mt-7 w-full rounded-full bg-[#203128] px-6 py-4 text-sm font-bold text-white transition hover:bg-[#3f806e] disabled:opacity-60">{cargando ? "Analizando catálogo…" : "Crear mi rutina personalizada →"}</button>
-            <p className="mt-3 text-center text-[11px] leading-5 text-stone-400">Orientación cosmética. No diagnostica enfermedades ni sustituye a dermatología.</p>
+            <button type="button" onClick={generar} disabled={cargando} className="mt-7 w-full rounded-full bg-[#203128] px-6 py-4 text-sm font-bold text-white transition hover:bg-[#3f806e] disabled:opacity-60">{cargando ? t("diagnosis.analyzing") : t("diagnosis.create")}</button>
+            <p className="mt-3 text-center text-[11px] leading-5 text-stone-400">{t("diagnosis.disclaimer")}</p>
           </div>
         </div>
       </section>
 
       {rutina && (
         <section id="mi-rutina" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-16 sm:px-8 sm:py-20">
-          <div className="flex flex-wrap items-end justify-between gap-5"><div><p className="eyebrow text-[#3f806e]">Perfil: piel {tipoPiel}</p><h2 className="mt-3 font-display text-4xl font-semibold sm:text-5xl">Tu plan Glasskin</h2></div><Link href={`/catalogo?piel=${tipoPiel}`} className="rounded-full border border-[#203128]/15 px-5 py-2.5 text-sm font-bold">Ver todo para mi piel</Link></div>
-          <div className="mt-9 grid gap-5 lg:grid-cols-2"><ListaRutina titulo="Mañana" icono="☀" pasos={rutina.manana} tono="bg-[#eee7d8]" /><ListaRutina titulo="Noche" icono="☾" pasos={rutina.noche} tono="bg-[#fbf8f1]" /></div>
+          <div className="flex flex-wrap items-end justify-between gap-5"><div><p className="eyebrow text-[#3f806e]">{t("diagnosis.profile")} {t("diagnosis.skinWord")} {t(`diagnosis.profileTypes.${tipoPiel === "seca" ? "dry" : tipoPiel === "grasa" ? "oily" : tipoPiel === "mixta" ? "combination" : tipoPiel}`)}</p><h2 className="mt-3 font-display text-4xl font-semibold sm:text-5xl">{t("diagnosis.plan")}</h2></div><Link href={`/catalogo?piel=${tipoPiel}`} className="rounded-full border border-[#203128]/15 px-5 py-2.5 text-sm font-bold">{t("diagnosis.viewSkin")}</Link></div>
+          <div className="mt-9 grid gap-5 lg:grid-cols-2"><ListaRutina titulo={t("diagnosis.morning")} icono="☀" pasos={rutina.manana} tono="bg-[#eee7d8]" /><ListaRutina titulo={t("diagnosis.evening")} icono="☾" pasos={rutina.noche} tono="bg-[#fbf8f1]" /></div>
           <div className="mt-5 grid gap-5 lg:grid-cols-[1fr_auto]">
-            <div className="rounded-[28px] bg-[#e8f0e8] p-7"><p className="text-sm font-bold">Consejos para empezar</p><ul className="mt-4 grid gap-3 sm:grid-cols-3">{rutina.consejos.map((consejo) => <li key={consejo} className="rounded-2xl bg-white/60 p-4 text-sm leading-6">{consejo}</li>)}</ul></div>
-            <Link href="/ia" className="flex min-h-36 items-center justify-center rounded-[28px] bg-[#203128] px-8 text-center text-sm font-bold text-white">Hablar con Skin AI<br />y ajustar mi plan →</Link>
+            <div className="rounded-[28px] bg-[#e8f0e8] p-7"><p className="text-sm font-bold">{t("diagnosis.tips")}</p><ul className="mt-4 grid gap-3 sm:grid-cols-3">{rutina.consejos.map((consejo) => <li key={consejo} className="rounded-2xl bg-white/60 p-4 text-sm leading-6">{consejo}</li>)}</ul></div>
+            <Link href="/ia" className="flex min-h-36 items-center justify-center rounded-[28px] bg-[#203128] px-8 text-center text-sm font-bold text-white">{t("diagnosis.askAI")}</Link>
           </div>
         </section>
       )}

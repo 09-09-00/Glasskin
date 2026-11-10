@@ -8,6 +8,8 @@ import { useCarrito } from "./CarritoProvider";
 import { useWishlist } from "./WishlistProvider";
 import { useFormatearPrecio } from "@/lib/useFormatearPrecio";
 import { ImagenProducto } from "./ImagenProducto";
+import { useIdioma } from "@/lib/idioma-provider";
+import { traducirCategoria } from "@/lib/idioma";
 
 interface Props {
   producto: {
@@ -28,6 +30,7 @@ export function TarjetaProducto({ producto }: Props) {
   const { agregar } = useCarrito();
   const { alternar, tiene } = useWishlist();
   const formatearPrecio = useFormatearPrecio();
+  const { idioma, t } = useIdioma();
   const agotado = producto.stock <= 0;
   const enWishlist = tiene(producto.id);
 
@@ -56,7 +59,7 @@ export function TarjetaProducto({ producto }: Props) {
         />
         {agotado && (
           <span className="absolute top-3 right-3 rounded-full bg-[#203128]/90 px-3 py-1 text-[10px] font-semibold text-white">
-            Agotado
+            {t("product.outOfStock")}
           </span>
         )}
         {/* Wishlist button en la imagen */}
@@ -71,7 +74,7 @@ export function TarjetaProducto({ producto }: Props) {
             imagen: producto.imagen,
           })}
           className="absolute top-3 left-3 z-10 grid h-9 w-9 place-items-center rounded-full border border-black/5 bg-white/90 shadow-sm backdrop-blur transition hover:scale-105 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3f806e]"
-          aria-label={enWishlist ? "Quitar de favoritos" : "Añadir a favoritos"}
+          aria-label={enWishlist ? t("product.removeFavorite") : t("product.addFavorite")}
         >
           {enWishlist ? (
             <svg className="h-5 w-5 text-[#3f806e]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
@@ -83,7 +86,7 @@ export function TarjetaProducto({ producto }: Props) {
 
       {/* Información */}
       <div className="flex flex-1 flex-col gap-1 p-4 sm:p-5">
-        <div className="flex min-w-0 items-center justify-between gap-2 text-[10px] font-bold tracking-[0.12em] text-[#3f806e] uppercase"><span className="truncate">{producto.brand.nombre}</span>{producto.category && <span className="hidden truncate text-right text-stone-400 sm:block">{producto.category.nombre}</span>}</div>
+        <div className="flex min-w-0 items-center justify-between gap-2 text-[10px] font-bold tracking-[0.12em] text-[#3f806e] uppercase"><span className="truncate">{producto.brand.nombre}</span>{producto.category && <span className="hidden truncate text-right text-stone-400 sm:block">{traducirCategoria(idioma, producto.category.nombre)}</span>}</div>
         <Link
           href={`/producto/${producto.slug}`}
           className="mt-1 line-clamp-2 min-h-10 text-sm font-semibold leading-5 text-[#203128] hover:text-[#3f806e]"
@@ -105,7 +108,7 @@ export function TarjetaProducto({ producto }: Props) {
           disabled={agotado}
           className="mt-2 rounded-full border border-[#203128] bg-[#203128] py-2.5 text-xs font-bold text-white transition hover:border-[#3f806e] hover:bg-[#3f806e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3f806e] disabled:cursor-not-allowed disabled:border-stone-200 disabled:bg-stone-200 disabled:text-stone-400"
         >
-          {agotado ? "Sin stock" : "Añadir al carrito"}
+          {agotado ? t("product.noStock") : t("product.addToCart")}
         </button>
       </div>
     </article>

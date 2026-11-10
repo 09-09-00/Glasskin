@@ -9,10 +9,12 @@ import { useCarrito } from "@/components/CarritoProvider";
 import { useFormatearPrecio } from "@/lib/useFormatearPrecio";
 import { TIENDA } from "@/lib/config";
 import { ImagenProducto } from "@/components/ImagenProducto";
+import { useIdioma } from "@/lib/idioma-provider";
 
 export default function Carrito() {
   const { items, cambiarCantidad, quitar, vaciar, total, cantidadTotal, listo } = useCarrito();
   const formatearPrecio = useFormatearPrecio();
+  const { idioma, t } = useIdioma();
   const [logistica, setLogistica] = useState({ costoDeliveryUsd: 0, envioGratisDesdeUsd: TIENDA.envioGratisDesde });
 
   useEffect(() => {
@@ -31,20 +33,20 @@ export default function Carrito() {
   if (!listo) {
     return (
       <div className="mx-auto max-w-4xl px-4 py-16 text-center text-sm text-stone-400">
-        Cargando carrito...
+        {idioma === "en" ? "Loading your cart…" : "Cargando carrito..."}
       </div>
     );
   }
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10">
-      <header className="mb-8 flex items-end justify-between">
+      <header className="mb-8 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="font-display text-3xl font-bold text-stone-900 sm:text-4xl">Tu carrito</h1>
+          <h1 className="font-display text-3xl font-bold text-stone-900 sm:text-4xl">{t("cart.title")}</h1>
           <p className="mt-2 text-sm text-stone-500">
             {cantidadTotal === 0
-              ? "Todavía no tienes productos"
-              : `${cantidadTotal} producto${cantidadTotal === 1 ? "" : "s"} en tu carrito`}
+              ? t("cart.emptyText")
+              : `${cantidadTotal} ${idioma === "en" ? (cantidadTotal === 1 ? "item" : "items") : (cantidadTotal === 1 ? "producto" : "productos")} ${t("cart.inCart")}`}
           </p>
         </div>
         {items.length > 0 && (
@@ -53,7 +55,7 @@ export default function Carrito() {
             onClick={vaciar}
             className="text-sm font-medium text-stone-400 transition hover:text-red-600"
           >
-            Vaciar carrito
+            {t("cart.clear")}
           </button>
         )}
       </header>
@@ -61,15 +63,15 @@ export default function Carrito() {
       {items.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-stone-300 bg-white p-12 text-center">
           <span className="text-4xl">🛒</span>
-          <p className="mt-4 font-semibold text-stone-900">Tu carrito está vacío</p>
+          <p className="mt-4 font-semibold text-stone-900">{t("cart.emptyTitle")}</p>
           <p className="mt-1 text-sm text-stone-500">
-            Explora el catálogo y encuentra lo que tu piel necesita.
+            {t("cart.emptyHelp")}
           </p>
           <Link
             href="/catalogo"
             className="mt-6 inline-block rounded-full bg-[#3f806e] px-7 py-3 text-sm font-semibold text-white transition hover:bg-[#2c5e50]"
           >
-            Explorar catálogo
+            {t("cart.explore")}
           </Link>
         </div>
       ) : (
@@ -144,20 +146,20 @@ export default function Carrito() {
 
           {/* ---------- Resumen ---------- */}
           <aside className="h-fit rounded-2xl border border-stone-200 bg-white p-6">
-            <h2 className="text-sm font-bold text-stone-900">Resumen</h2>
+            <h2 className="text-sm font-bold text-stone-900">{t("cart.summary")}</h2>
             <dl className="mt-4 space-y-2 text-sm">
               <div className="flex justify-between text-stone-600">
-                <dt>Subtotal</dt>
+                <dt>{t("cart.subtotal")}</dt>
                 <dd>{formatearPrecio(total)}</dd>
               </div>
               <div className="flex justify-between text-stone-600">
-                <dt>Envío</dt>
+                <dt>{t("cart.shipping")}</dt>
                 <dd className={envioGratis ? "font-semibold text-emerald-600" : ""}>
-                  {costoEnvio === 0 ? "Gratis" : formatearPrecio(costoEnvio)}
+                  {costoEnvio === 0 ? t("cart.free") : formatearPrecio(costoEnvio)}
                 </dd>
               </div>
               <div className="flex justify-between border-t border-stone-200 pt-3 text-base font-bold text-stone-900">
-                <dt>Total</dt>
+                <dt>{t("cart.total")}</dt>
                 <dd>{formatearPrecio(total + costoEnvio)}</dd>
               </div>
             </dl>
@@ -172,16 +174,16 @@ export default function Carrito() {
               href="/checkout"
               className="mt-5 block rounded-full bg-[#3f806e] py-3 text-center text-sm font-semibold text-white transition hover:bg-[#2c5e50]"
             >
-              Finalizar compra
+              {t("cart.checkout")}
             </Link>
             <Link
               href="/catalogo"
               className="mt-2 block rounded-full border border-stone-300 py-3 text-center text-sm font-semibold text-stone-700 transition hover:bg-stone-50"
             >
-              Seguir comprando
+              {t("cart.keepShopping")}
             </Link>
             <p className="mt-4 text-center text-[11px] text-stone-400">
-              {TIENDA.nombre} · Sin pago real por ahora (FASE 1)
+              {TIENDA.nombre} · {t("cart.demoNotice")}
             </p>
           </aside>
         </div>
